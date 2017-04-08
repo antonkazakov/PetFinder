@@ -5,6 +5,8 @@ import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.realm.RealmList;
 
 /**
@@ -13,6 +15,10 @@ import io.realm.RealmList;
  */
 
 public class ShelterMapper implements Mapper<ShelterGetResponse, Shelter> {
+
+    @Inject
+    public ShelterMapper() {
+    }
 
     @Override
     public Shelter transform(ShelterGetResponse shelterGetResponse) {

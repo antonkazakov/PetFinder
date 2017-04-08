@@ -1,4 +1,4 @@
-package com.greencode.petfinder.data.entity.locanbeans;
+package com.greencode.petfinder.data.entity.mappers;
 
 import android.location.Address;
 import android.location.Geocoder;

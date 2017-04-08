@@ -27,7 +27,6 @@ public class PFApplication extends Application {
         super.onCreate();
         initRealm();
         appComponent = buildComponent();
-
     }
 
     public AppComponent buildComponent(){

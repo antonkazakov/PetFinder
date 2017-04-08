@@ -26,8 +26,12 @@ public class PetSourceFactory {
     }
 
     public PetDataSource create(){
-        return new CloudPetDataSource(apiService, petMapper, petCache);
-    }
+        if (petCache.isExpired()){
+            return new CloudPetDataSource(apiService, petMapper, petCache);
+        }else {
+            return new LocalPetDataSource(petCache);
+        }
 
+    }
 
 }

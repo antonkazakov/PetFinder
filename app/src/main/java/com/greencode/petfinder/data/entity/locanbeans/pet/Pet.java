@@ -118,4 +118,34 @@ public class Pet extends RealmObject{
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pet pet = (Pet) o;
+
+        if (!id.equals(pet.id)) return false;
+        if (!name.equals(pet.name)) return false;
+        if (!sex.equals(pet.sex)) return false;
+        if (!animal.equals(pet.animal)) return false;
+        if (!age.equals(pet.age)) return false;
+        if (!size.equals(pet.size)) return false;
+        if (!photos.equals(pet.photos)) return false;
+        return contact.equals(pet.contact);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + sex.hashCode();
+        result = 31 * result + animal.hashCode();
+        result = 31 * result + age.hashCode();
+        result = 31 * result + size.hashCode();
+        result = 31 * result + photos.hashCode();
+        result = 31 * result + contact.hashCode();
+        return result;
+    }
 }

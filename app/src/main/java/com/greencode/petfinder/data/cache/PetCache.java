@@ -21,9 +21,7 @@ public class PetCache implements Cache<Pet> {
     private static final long CACHE_EXPIRATION_TIME = 60*1000;
 
     @Inject
-    public PetCache() {
-
-    }
+    public PetCache() {}
 
     @Override
     public void clearCache() {
@@ -38,12 +36,10 @@ public class PetCache implements Cache<Pet> {
     public Observable<List<Pet>> getAll() {
         final Realm realm = Realm.getDefaultInstance();
         return realm.where(Pet.class)
-               // .equalTo("name", name)
                 .findAll()
                 .asObservable()
                 .map(realm::copyFromRealm)
                 .doOnTerminate(realm::close);
-
     }
 
     @Override

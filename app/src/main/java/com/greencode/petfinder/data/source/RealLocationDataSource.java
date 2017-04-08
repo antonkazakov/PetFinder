@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
-import com.greencode.petfinder.data.entity.locanbeans.LocationMapper;
+import com.greencode.petfinder.data.entity.mappers.LocationMapper;
 import com.greencode.petfinder.data.entity.locanbeans.simplelocation.SimpleLocation;
 import com.greencode.petfinder.data.location.LocationUnavailableException;
 

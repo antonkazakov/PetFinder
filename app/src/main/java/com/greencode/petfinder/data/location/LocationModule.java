@@ -9,12 +9,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.greencode.petfinder.data.cache.Cache;
 import com.greencode.petfinder.data.cache.LocationCache;
-import com.greencode.petfinder.data.cache.PetCache;
-import com.greencode.petfinder.data.entity.locanbeans.LocationMapper;
-import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
+import com.greencode.petfinder.data.entity.mappers.LocationMapper;
 import com.greencode.petfinder.data.entity.locanbeans.simplelocation.SimpleLocation;
 import com.greencode.petfinder.data.entity.mappers.Mapper;
-import com.greencode.petfinder.data.location.LocationRepository;
 import com.greencode.petfinder.data.source.LocationFactory;
 
 import java.util.Locale;
@@ -53,7 +50,6 @@ public class LocationModule {
     public Cache<SimpleLocation> provideLocationCache(){
         return new LocationCache();
     }
-
 
     @NonNull
     @Provides

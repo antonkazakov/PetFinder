@@ -2,7 +2,7 @@ package com.greencode.petfinder.data.source;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.greencode.petfinder.data.cache.Cache;
-import com.greencode.petfinder.data.entity.locanbeans.LocationMapper;
+import com.greencode.petfinder.data.entity.mappers.LocationMapper;
 import com.greencode.petfinder.data.entity.locanbeans.simplelocation.SimpleLocation;
 
 import javax.inject.Inject;

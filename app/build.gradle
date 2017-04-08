@@ -61,6 +61,13 @@ dependencies {
     testCompile "junit:junit:$junitVersion"
     testCompile "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
 
+
+    testCompile "org.powermock:powermock-module-junit4:1.6.4"
+    testCompile "org.powermock:powermock-module-junit4-rule:1.6.4"
+    testCompile "org.powermock:powermock-api-mockito:1.6.4"
+    testCompile "org.powermock:powermock-classloading-xstream:1.6.4"
+
+
     //dagger2
     compile "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"

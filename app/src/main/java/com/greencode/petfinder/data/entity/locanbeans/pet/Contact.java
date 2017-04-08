@@ -59,4 +59,29 @@ public class Contact extends RealmObject {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Contact contact = (Contact) o;
+
+        if (!phone.equals(contact.phone)) return false;
+        if (!email.equals(contact.email)) return false;
+        if (!state.equals(contact.state)) return false;
+        if (!city.equals(contact.city)) return false;
+        return zipcode.equals(contact.zipcode);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = phone.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + state.hashCode();
+        result = 31 * result + city.hashCode();
+        result = 31 * result + zipcode.hashCode();
+        return result;
+    }
 }

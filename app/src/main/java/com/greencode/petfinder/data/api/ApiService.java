@@ -25,4 +25,8 @@ public interface ApiService {
     @POST("pet.getRandom")
     Observable<PetGetResponse> getRandomPet(@FieldMap Map<String, String> map);
 
+    @FormUrlEncoded
+    @POST("pet.find")
+    Observable<PetGetResponse> findPet(@FieldMap Map<String, String> map);
+
 }
