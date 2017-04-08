@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<petfinder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://api.petfinder.com/schemas/0.9/petfinder.xsd">
+    <header>
+        <version>0.1</version>
+        <timestamp>2017-04-07T18:07:46Z</timestamp>
+        <status>
+            <code>100</code>
+            <message />
+        </status>
+    </header>
+    <pet>
+        <id>37432659</id>
+        <shelterId>QC100</shelterId>
+        <shelterPetId />
+        <name>Teddy</name>
+        <animal>Cat</animal>
+        <breeds>
+            <breed>Domestic Short Hair-black</breed>
+        </breeds>
+        <mix>no</mix>
+        <age>Senior</age>
+        <sex>M</sex>
+        <size>M</size>
+        <options>
+            <option>hasShots</option>
+            <option>altered</option>
+            <option>housetrained</option>
+        </options>
+        <description>
+            <![CDATA[Cherchez vous un bon companon.  Teddy a 8 ans et son humain est gravement malade donc nous devons lui trouver une nouvelle famille qui pourrait l'adopter pour la vie.  Il est vacciner et steriliser.  Affectueux mais en meme temp independant et joeur.
+Nous cherchons une famille qui pourrais l'adopter pour le restant de sa vie.
+
+Are you looking for a great companion.  Teddy is 8 years and his human companion is very ill.  We are looking for a loving forever family.  he is vaccinated and sterilized.  Teddy is affectionate but also independent at his times.  He loves to play.  If you think you could offer him a good home please contact us.
+
+donation:  $ 50.00
+Refuge Chat-va-Mieux Shelter]]>
+        </description>
+        <lastUpdate>2017-02-15T22:47:10Z</lastUpdate>
+        <status>A</status>
+        <media>
+            <photos>
+                <photo id="1" size="pnt">http://photos.petfinder.com/photos/pets/37432659/1/?bust=1487198829&amp;width=60&amp;-pnt.jpg</photo>
+                <photo id="1" size="fpm">http://photos.petfinder.com/photos/pets/37432659/1/?bust=1487198829&amp;width=95&amp;-fpm.jpg</photo>
+                <photo id="1" size="x">http://photos.petfinder.com/photos/pets/37432659/1/?bust=1487198829&amp;width=500&amp;-x.jpg</photo>
+                <photo id="1" size="pn">http://photos.petfinder.com/photos/pets/37432659/1/?bust=1487198829&amp;width=300&amp;-pn.jpg</photo>
+                <photo id="1" size="t">http://photos.petfinder.com/photos/pets/37432659/1/?bust=1487198829&amp;width=50&amp;-t.jpg</photo>
+                <photo id="2" size="pnt">http://photos.petfinder.com/photos/pets/37432659/2/?bust=1487198829&amp;width=60&amp;-pnt.jpg</photo>
+                <photo id="2" size="fpm">http://photos.petfinder.com/photos/pets/37432659/2/?bust=1487198829&amp;width=95&amp;-fpm.jpg</photo>
+                <photo id="2" size="x">http://photos.petfinder.com/photos/pets/37432659/2/?bust=1487198829&amp;width=500&amp;-x.jpg</photo>
+                <photo id="2" size="pn">http://photos.petfinder.com/photos/pets/37432659/2/?bust=1487198829&amp;width=300&amp;-pn.jpg</photo>
+                <photo id="2" size="t">http://photos.petfinder.com/photos/pets/37432659/2/?bust=1487198829&amp;width=50&amp;-t.jpg</photo>
+            </photos>
+        </media>
+        <contact>
+            <address1 />
+            <address2 />
+            <city>Montreal</city>
+            <state>QC</state>
+            <zip>H2L 3L7</zip>
+            <phone>514-726-3571</phone>
+            <fax />
+            <email>assml@videotron.ca</email>
+        </contact>
+    </pet>
+</petfinder>
