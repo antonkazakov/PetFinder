@@ -77,6 +77,10 @@ public class LocationCache implements Cache<SimpleLocation> {
         return false;
     }
 
+    @Override
+    public long getCacheSize() {
+        return 0;
+    }
 
 
 }

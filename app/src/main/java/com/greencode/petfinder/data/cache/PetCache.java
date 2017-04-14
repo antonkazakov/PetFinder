@@ -81,4 +81,10 @@ public class PetCache implements Cache<Pet> {
         return false;
     }
 
+    @Override
+    public long getCacheSize() {
+        final Realm realm = Realm.getDefaultInstance();
+        return realm.where(Pet.class).count();
+    }
+
 }

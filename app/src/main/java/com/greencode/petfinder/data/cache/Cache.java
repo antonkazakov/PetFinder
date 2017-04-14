@@ -25,4 +25,6 @@ public interface Cache<T> {
 
     boolean isExpired();
 
+    long getCacheSize();
+
 }

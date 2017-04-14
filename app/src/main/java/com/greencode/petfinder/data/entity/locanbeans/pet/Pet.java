@@ -2,6 +2,8 @@ package com.greencode.petfinder.data.entity.locanbeans.pet;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Index;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * @author Anton Kazakov
@@ -10,6 +12,7 @@ import io.realm.RealmObject;
 
 public class Pet extends RealmObject{
 
+    @PrimaryKey
     private String id;
 
     private String name;
@@ -27,6 +30,9 @@ public class Pet extends RealmObject{
     private RealmList<Photo> photos;
 
     private Contact contact;
+
+    @Index
+    private String TABLE;
 
     public Pet() {
     }
@@ -101,6 +107,15 @@ public class Pet extends RealmObject{
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+
+    public String getTABLE() {
+        return TABLE;
+    }
+
+    public void setTABLE(String TABLE) {
+        this.TABLE = TABLE;
     }
 
     @Override

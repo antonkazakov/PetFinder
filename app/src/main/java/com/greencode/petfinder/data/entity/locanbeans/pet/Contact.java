@@ -77,7 +77,10 @@ public class Contact extends RealmObject {
 
     @Override
     public int hashCode() {
-        int result = phone.hashCode();
+        int result = 0;
+        if (phone!=null) {
+            result = phone.hashCode();
+        }
         result = 31 * result + email.hashCode();
         result = 31 * result + state.hashCode();
         result = 31 * result + city.hashCode();

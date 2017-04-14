@@ -53,14 +53,14 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public  SimpleXmlConverterFactory provideSimpleXmlConverterFactory() {
+    public SimpleXmlConverterFactory provideSimpleXmlConverterFactory() {
         return SimpleXmlConverterFactory.create();
     }
 
     @NonNull
     @Provides
     @Singleton
-    public  RxJavaCallAdapterFactory providesRxAdapter() {
+    public RxJavaCallAdapterFactory providesRxAdapter() {
         return RxJavaCallAdapterFactory.create();
     }
 
@@ -74,7 +74,7 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public  HttpLoggingInterceptor provideHttpLoggingInterceptor(){
+    public HttpLoggingInterceptor provideHttpLoggingInterceptor(){
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;

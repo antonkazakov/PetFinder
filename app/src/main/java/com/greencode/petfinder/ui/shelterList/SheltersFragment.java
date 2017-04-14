@@ -2,56 +2,92 @@ package com.greencode.petfinder.ui.shelterList;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.greencode.petfinder.PFApplication;
 import com.greencode.petfinder.R;
+import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
+import com.greencode.petfinder.ui.base.BasePresenter;
+import com.greencode.petfinder.ui.viewmodels.ShelterListViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SheltersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SheltersFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import javax.inject.Inject;
 
-    public SheltersFragment() {
+import io.realm.RealmResults;
 
-    }
 
-    // TODO: Rename and change types and number of parameters
-    public static SheltersFragment newInstance(String param1, String param2) {
-        SheltersFragment fragment = new SheltersFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class SheltersFragment extends Fragment implements SheltersContract.View{
+
+    public SheltersFragment() {}
+
+    ShelterListComponent shelterListComponent;
+
+    List<ShelterListViewModel> shelterListViewModels = new ArrayList<>();
+    ShelterListAdapter shelterListAdapter;
+    RecyclerView recyclerView;
+
+    @Inject
+    SheltersListPresenter sheltersListPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        shelterListComponent = DaggerShelterListComponent
+                .builder()
+                .appComponent(PFApplication.getAppComponent())
+                .shelterListModule(new ShelterListModule(this))
+                .build();
+        shelterListComponent.inject(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sheltes, container, false);
+        View view = inflater.inflate(R.layout.fragment_sheltes, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        shelterListAdapter = new ShelterListAdapter(shelterListViewModels);
+        initRecyclerView();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        sheltersListPresenter.getNearShelters();
+    }
+
+    private void initRecyclerView(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(shelterListAdapter);
+    }
+
+    @Override
+    public void setPresenter(BasePresenter basePresenter) {
+
+    }
+
+    @Override
+    public void showError(String text) {
+
+    }
+
+    @Override
+    public void onSheltersRefreshed(List<ShelterListViewModel> shelterList) {
+        Log.i("dsf", "onSheltersRefreshed: " + shelterList.size());
+    }
+
+    @Override
+    public void onSeltersLoadedMore(List<ShelterListViewModel> shelterList) {
+        Log.i("dsf", "onSheltersRefreshed: " + shelterList.size());
     }
 
 }

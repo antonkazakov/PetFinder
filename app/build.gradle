@@ -68,6 +68,8 @@ dependencies {
     testCompile "org.powermock:powermock-classloading-xstream:1.6.4"
 
 
+    compile 'io.realm:android-adapters:2.0.0'
+
     //dagger2
     compile "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
@@ -105,4 +107,8 @@ dependencies {
 
     compile "com.google.android.gms:play-services-maps:10.2.1"
     compile "com.google.android.gms:play-services-location:10.2.1"
+
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
+    compile 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
+
 }

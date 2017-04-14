@@ -32,7 +32,7 @@ public class SinglePetViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.singlepet_vp_item, container, false);
         ImageView imageView = (ImageView) view.findViewById(R.id.image);
-        Glide.with(context).load(photos.get(position).getUrl()).centerCrop().into(imageView);
+        Glide.with(context).load(photos.get(position).getUrl()).dontAnimate().into(imageView);
         container.addView(view);
         return view;
     }

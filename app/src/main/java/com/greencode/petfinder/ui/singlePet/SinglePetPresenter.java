@@ -2,7 +2,7 @@ package com.greencode.petfinder.ui.singlePet;
 
 import android.util.Log;
 
-import com.greencode.petfinder.data.repository.PetRepository;
+import com.greencode.petfinder.data.source.pet.PetRepository;
 
 import javax.inject.Inject;
 
