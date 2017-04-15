@@ -1,10 +1,12 @@
 package com.greencode.petfinder.ui.main;
 
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.greencode.petfinder.R;
+import com.greencode.petfinder.ui.shelterList.SheltersFragment;
 
 public class MainContainerActivity extends AppCompatActivity {
 

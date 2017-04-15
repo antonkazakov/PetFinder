@@ -3,6 +3,7 @@ package com.greencode.petfinder.data.api;
 import com.greencode.petfinder.data.entity.beans.shelter.ShelterFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
+import com.greencode.petfinder.data.entity.beans.shelter.ShelterGetResponse;
 
 import java.util.Map;
 
@@ -75,6 +76,15 @@ public interface ApiService {
     Observable<ShelterFindResponse> findShelter(@FieldMap Map<String, String> map);
 
     /**
+     * Returns a record for a single shelter.
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("shelter.get")
+    Observable<ShelterGetResponse> getShelter(@FieldMap Map<String, String> map);
+
+    /**
      * Returns a list of shelter IDs listing animals of a particular breed.
      * @param map
      * @return
@@ -82,5 +92,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("shelter.listByBreed")
     Observable<ShelterFindResponse> breedsInShelter(@FieldMap Map<String, String> map);
+
+
 
 }

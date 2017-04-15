@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.greencode.petfinder.ui.singlePet.SinglePetActivity">
+    tools:context="com.greencode.petfinder.ui.petSingle.SinglePetActivity">
 
 
     <include layout="@layout/content_single_pet" />

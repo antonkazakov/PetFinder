@@ -1,4 +1,4 @@
-package com.greencode.petfinder.ui.singlePet;
+package com.greencode.petfinder.ui.petSingle;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -51,10 +51,11 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbar;
     CirclePageIndicator mIndicator;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("test1","onCreateView");
+
         View view = inflater.inflate(R.layout.fragment_single_pet, container, false);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);

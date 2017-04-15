@@ -1,4 +1,4 @@
-package com.greencode.petfinder.ui.singlePet;
+package com.greencode.petfinder.ui.petSingle;
 
 import android.support.annotation.NonNull;
 

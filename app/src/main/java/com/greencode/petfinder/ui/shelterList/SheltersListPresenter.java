@@ -49,7 +49,6 @@ public class SheltersListPresenter implements SheltersContract.Presenter{
                     map.put("key", "77cffd89b0d4cca16a350862872c2261");
                     map.put("location", simpleLocation.getZipCode());
                     map.put("limit", String.valueOf("40"));
-                    Log.i("FUCK", "getNearShelters: " + simpleLocation.getZipCode());
                     return sheltersRepository.getShelters(map);
                 })
                 .zipWith(locationRepository.getMyLocation(),(shelters, simpleLocation) -> {
@@ -60,7 +59,6 @@ public class SheltersListPresenter implements SheltersContract.Presenter{
                 .subscribe(shelterListViewModels -> {
                     view.onSheltersRefreshed(shelterListViewModels);
                 }, throwable -> {
-                    Log.e("UCK", "getNearSheltersWithForceLocationUpdate: ",throwable );
                     view.showError(throwable.getLocalizedMessage());
                 });
     }
@@ -83,7 +81,6 @@ public class SheltersListPresenter implements SheltersContract.Presenter{
                 .subscribe(shelterListViewModels -> {
                     view.onSheltersRefreshed(shelterListViewModels);
                 }, throwable -> {
-                    Log.e("UCK", "getNearSheltersWithForceLocationUpdate: ",throwable );
                     view.showError(throwable.getLocalizedMessage());
                 });
     }

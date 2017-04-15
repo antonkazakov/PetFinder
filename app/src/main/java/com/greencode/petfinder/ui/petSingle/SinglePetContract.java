@@ -1,4 +1,4 @@
-package com.greencode.petfinder.ui.singlePet;
+package com.greencode.petfinder.ui.petSingle;
 
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.ui.base.BasePresenter;

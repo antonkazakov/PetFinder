@@ -1,4 +1,4 @@
-package com.greencode.petfinder.ui.singlePet;
+package com.greencode.petfinder.ui.petSingle;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;

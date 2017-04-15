@@ -6,7 +6,7 @@
     android:id="@+id/content_single_pet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.greencode.petfinder.ui.singlePet.SinglePetFragment">
+    tools:context="com.greencode.petfinder.ui.petSingle.SinglePetFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

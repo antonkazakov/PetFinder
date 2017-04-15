@@ -48,6 +48,7 @@ public class ShelterMapper implements Mapper<ShelterGetResponse, Shelter> {
         return shelters;
     }
 
+
     public Shelter transform(ShelterFindResponse.Shelter shelterResponse) {
         Shelter shelter = new Shelter();
         shelter.setId(shelterResponse.getId());

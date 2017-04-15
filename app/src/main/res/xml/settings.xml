@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <Preference
+            android:title="Мой профиль"
+            android:summary="Редактировать информацию профиля"
+            android:key="profilePref">
+        </Preference>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:title="Уведомления о новых заказах"
+        android:summary="Пуш уведомления о новых заказах по близости"
+        android:key="pushes" />
+    <Preference
+            android:title="Выход"
+            android:enabled="false"
+            android:selectable="false"
+            android:summary="Сменить пользователя"
+            android:key="exitPref">
+        </Preference>
+    <PreferenceCategory
+        android:title="Обратная связь">
+        <Preference
+            android:title="Написать разработчикам"
+            android:summary="Написать разработчикам приложения"
+            android:key="developerPref">
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Информация">
+        <Preference
+            android:title="О приложении"
+            android:key="infoPref">
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

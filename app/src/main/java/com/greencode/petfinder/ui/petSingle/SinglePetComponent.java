@@ -1,4 +1,4 @@
-package com.greencode.petfinder.ui.singlePet;
+package com.greencode.petfinder.ui.petSingle;
 
 import com.greencode.petfinder.data.AppComponent;
 import com.greencode.petfinder.ui.FragmentScope;

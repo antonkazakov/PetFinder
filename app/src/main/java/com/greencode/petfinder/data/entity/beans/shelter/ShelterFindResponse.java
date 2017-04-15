@@ -14,14 +14,8 @@ import java.util.List;
 @Root(name="petfinder")
 public class ShelterFindResponse extends BaseResponse {
 
-    @Element(name="lastOffset", required=false)
-    String lastOffset;
-
     @ElementList(name="shelters", required=false)
     List<Shelter> shelters;
-
-    public String getLastOffset() {return this.lastOffset;}
-    public void setLastOffset(String value) {this.lastOffset = value;}
 
     public List<Shelter> getShelters() {return this.shelters;}
     public void setShelters(List<Shelter> value) {this.shelters = value;}
