@@ -1,5 +1,6 @@
 package com.greencode.petfinder.data.cache;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 
 import java.util.List;
@@ -7,9 +8,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.realm.Realm;
-import io.realm.RealmObject;
-import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * @author Anton Kazakov
