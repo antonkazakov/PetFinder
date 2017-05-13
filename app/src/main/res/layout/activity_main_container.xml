@@ -5,26 +5,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.greencode.petfinder.ui.main.MainContainerActivity">
+    tools:context=".ui.screens.main.MainContainerActivity">
 
-    <FrameLayout
-        android:id="@+id/mainContainer"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/pureWhite"
+            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" >
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/logoView"
+                    android:layout_width="120dp"
+                    app:srcCompat="@drawable/pet_finder_logo_tm"
+                    android:layout_height="36dp" />
+            </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/mainProgressBar"
+            android:indeterminate="true"
+            android:layout_width="match_parent"
+            app:mpb_useIntrinsicPadding="false"
+            android:layout_height="4dp"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+            app:mpb_progressTint="@color/greenPrimary"
+            app:mpb_secondaryProgressTint="@color/greenPrimary"
+            app:mpb_progressBackgroundTint="@color/greenPrimary"
+            app:mpb_progressStyle="horizontal"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavView"
-        android:animateLayoutChanges="true">
+        android:animateLayoutChanges="true"
+        android:layout_below="@+id/appBarLayout">
 
-    </FrameLayout>
+    </android.support.v4.view.ViewPager>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
+        android:background="@color/pureWhite"
         app:elevation="6dp"
-        app:itemIconTint="@color/pureWhite"
-        app:itemTextColor="@color/pureWhite"
+        app:itemIconTint="@color/colorPrimary"
+        app:itemTextColor="@color/colorPrimary"
         app:menu="@menu/main_container_bottom_menu"/>
 
 </RelativeLayout>

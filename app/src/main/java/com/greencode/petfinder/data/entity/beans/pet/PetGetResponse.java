@@ -9,6 +9,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,16 +19,6 @@ public class PetGetResponse extends BaseResponse {
     Pet pet;
 
     public Pet getPet() {return this.pet;}
-
-    public static class Description {
-
-        @Element(name="#cdata-section", required=false)
-        String cdataSection;
-
-        public String getCdataSection() {return this.cdataSection;}
-        public void setCdataSection(String value) {this.cdataSection = value;}
-
-    }
 
     public static class Photo {
 
@@ -133,13 +124,28 @@ public class PetGetResponse extends BaseResponse {
 
     }
 
+
+    public static class Breed {
+
+        @Element(name="breed", required=false)
+        String breed;
+
+        public String getBreed() {
+            return breed;
+        }
+
+        public void setBreed(String breed) {
+            this.breed = breed;
+        }
+    }
+
     public static class Pet {
 
         @Element(name="sex", required=false)
         String sex;
 
-        @Element(name="description", required=false)
-        Description description;
+        @Element(name="description", required=false, data = true)
+        String description;
 
         @Element(name="shelterId", required=false)
         String shelterId;
@@ -147,8 +153,8 @@ public class PetGetResponse extends BaseResponse {
         @Element(name="media", required=false)
         Media media;
 
-        @Element(name="breeds", required=false)
-        Breeds breeds;
+        @ElementList(name="breeds", required=false)
+        List<Breed> breeds = new ArrayList<>();
 
         @Element(name="size", required=false)
         String size;
@@ -163,7 +169,7 @@ public class PetGetResponse extends BaseResponse {
         String name;
 
         @ElementList(name="options", required=false)
-        List<String> options;
+        List<String> options = new ArrayList<>();
 
         @Element(name="animal", required=false)
         String animal;
@@ -186,8 +192,13 @@ public class PetGetResponse extends BaseResponse {
         public String getSex() {return this.sex;}
         public void setSex(String value) {this.sex = value;}
 
-        public Description getDescription() {return this.description;}
-        public void setDescription(Description value) {this.description = value;}
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
 
         public String getShelterId() {return this.shelterId;}
         public void setShelterId(String value) {this.shelterId = value;}
@@ -195,8 +206,13 @@ public class PetGetResponse extends BaseResponse {
         public Media getMedia() {return this.media;}
         public void setMedia(Media value) {this.media = value;}
 
-        public Breeds getBreeds() {return this.breeds;}
-        public void setBreeds(Breeds value) {this.breeds = value;}
+        public List<Breed> getBreeds() {
+            return breeds;
+        }
+
+        public void setBreeds(List<Breed> breeds) {
+            this.breeds = breeds;
+        }
 
         public String getSize() {return this.size;}
         public void setSize(String value) {this.size = value;}

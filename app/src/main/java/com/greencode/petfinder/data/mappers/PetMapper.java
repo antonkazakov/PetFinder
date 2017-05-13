@@ -32,7 +32,7 @@ public class PetMapper implements Mapper<PetGetResponse,Pet> {
         pet.setId(petGetResponse.getPet().getId());
         pet.setName(petGetResponse.getPet().getName());
         pet.setSex(petGetResponse.getPet().getSex());
-        pet.setDescription(petGetResponse.getPet().getDescription().getCdataSection());
+        pet.setDescription(petGetResponse.getPet().getDescription());
         pet.setAnimal(petGetResponse.getPet().getAnimal());
         pet.setAge(petGetResponse.getPet().getAge());
         pet.setSize(petGetResponse.getPet().getSize());
@@ -69,16 +69,17 @@ public class PetMapper implements Mapper<PetGetResponse,Pet> {
         pet.setSize(petResponse.getSize());
 
         RealmList<Photo> photoRealmList = new RealmList<>();
-        for (PetFindResponse.Photo photoItem : petResponse.getMedia().getPhotos()){
-            if (photoItem.getSize().equals(BIG_PHOTO)){
-                Photo photo = new Photo();
-                photo.setId(petResponse.getId()+ "_" + photoItem.getId().toString());
-                photo.setUrl(photoItem.getTextValue());
-                photoRealmList.add(photo);
+        if (petResponse.getMedia().getPhotos() != null) {
+            for (PetFindResponse.Photo photoItem : petResponse.getMedia().getPhotos()) {
+                if (photoItem.getSize().equals(BIG_PHOTO)) {
+                    Photo photo = new Photo();
+                    photo.setId(petResponse.getId() + "_" + photoItem.getId().toString());
+                    photo.setUrl(photoItem.getTextValue());
+                    photoRealmList.add(photo);
+                }
             }
+            pet.setPhotos(photoRealmList);
         }
-        pet.setPhotos(photoRealmList);
-
         Contact contact = new Contact();
         contact.setCity(petResponse.getContact().getCity());
         contact.setEmail(petResponse.getContact().getEmail());

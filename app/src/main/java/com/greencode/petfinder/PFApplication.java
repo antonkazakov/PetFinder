@@ -39,7 +39,7 @@ public class PFApplication extends Application {
         Realm.init(getApplicationContext());
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name(Realm.DEFAULT_REALM_NAME)
-                .schemaVersion(6)
+                .schemaVersion(11)
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(config);

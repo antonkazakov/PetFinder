@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.greencode.petfinder.data.api.ApiService;
 
+import java.util.concurrent.Executors;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -40,13 +42,14 @@ public class NetworkModule {
     @Provides
     @Singleton
     public static Retrofit provideRetrofit(@NonNull SimpleXmlConverterFactory simpleXmlConverterFactory,
-                                           @NonNull RxJavaCallAdapterFactory rxAdapter,
-                                           @NonNull OkHttpClient client) {
+                                            @NonNull RxJavaCallAdapterFactory rxAdapter,
+                                            @NonNull OkHttpClient client) {
         return new Retrofit.Builder()
                 .baseUrl("http://api.petfinder.com")
                 .client(client)
-                .addConverterFactory(simpleXmlConverterFactory)
+                .callbackExecutor(Executors.newFixedThreadPool(5))
                 .addCallAdapterFactory(rxAdapter)
+                .addConverterFactory(simpleXmlConverterFactory)
                 .build();
     }
 

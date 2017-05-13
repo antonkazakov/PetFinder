@@ -6,7 +6,7 @@
     android:id="@+id/content_single_pet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.greencode.petfinder.ui.petSingle.SinglePetFragment">
+    tools:context=".ui.screens.petSingle.SinglePetFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -68,7 +68,7 @@
 </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
+        android:id="@+id/recyclerView"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

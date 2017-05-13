@@ -9,28 +9,26 @@ import io.realm.RealmObject;
 
 public class SimpleLocation extends RealmObject{
 
-    private double latitude;
+    private String placeId;
 
-    private double longitude;
+    private String address;
 
     private long created;
 
-    private String zipCode;
-
-    public double getLatitude() {
-        return latitude;
+    public String getPlaceId() {
+        return placeId;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public long getCreated() {
@@ -39,23 +37,5 @@ public class SimpleLocation extends RealmObject{
 
     public void setCreated(long created) {
         this.created = created;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("SimpleLocation{");
-        sb.append("latitude=").append(latitude);
-        sb.append(", longitude=").append(longitude);
-        sb.append(", created=").append(created);
-        sb.append('}');
-        return sb.toString();
     }
 }

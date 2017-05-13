@@ -2,11 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.greencode.petfinder.ui.shelterList.SheltersFragment">
+    tools:context=".ui.screens.shelterList.SheltersFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:background="#fff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

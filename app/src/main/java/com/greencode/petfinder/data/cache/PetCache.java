@@ -8,6 +8,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.realm.Realm;
+import rx.Observable;
+import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author Anton Kazakov
@@ -16,7 +20,7 @@ import io.realm.Realm;
 
 public class PetCache implements Cache<Pet> {
 
-    private static final long CACHE_EXPIRATION_TIME = 60*1000;
+    private static final long CACHE_EXPIRATION_TIME = 60*60*1000;
 
     @Inject
     public PetCache() {}
@@ -37,7 +41,8 @@ public class PetCache implements Cache<Pet> {
                 .findAll()
                 .asObservable()
                 .map(realm::copyFromRealm)
-                .doOnTerminate(realm::close);
+                .doOnUnsubscribe(realm::close);
+
     }
 
     @Override
@@ -76,7 +81,8 @@ public class PetCache implements Cache<Pet> {
         if (realm.where(Pet.class).count() != 0){
             return false;
         }
-        return false;
+        realm.close();
+        return true;
     }
 
     @Override

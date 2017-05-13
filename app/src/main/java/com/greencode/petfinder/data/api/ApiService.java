@@ -1,5 +1,6 @@
 package com.greencode.petfinder.data.api;
 
+import com.greencode.petfinder.data.entity.beans.places.GeocodeResponse;
 import com.greencode.petfinder.data.entity.beans.shelter.ShelterFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
@@ -10,7 +11,10 @@ import java.util.Map;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -94,5 +98,7 @@ public interface ApiService {
     Observable<ShelterFindResponse> breedsInShelter(@FieldMap Map<String, String> map);
 
 
+    @GET
+    Observable<GeocodeResponse> convertToAddress(@Url String url, @QueryMap Map<String, String> map);
 
 }

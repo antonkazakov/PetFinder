@@ -70,9 +70,9 @@ public class LocationCache implements Cache<SimpleLocation> {
             return true;
         }
         SimpleLocation simpleLocation = realm.where(SimpleLocation.class).findFirst();
-        if (System.currentTimeMillis() - simpleLocation.getCreated() > CACHE_EXPIRATION_TIME){
-            return true;
-        }
+       /// if (System.currentTimeMillis() - simpleLocation.getCreated() > CACHE_EXPIRATION_TIME){
+       //     return true;
+       // }
         realm.close();
         return false;
     }
@@ -81,6 +81,5 @@ public class LocationCache implements Cache<SimpleLocation> {
     public long getCacheSize() {
         return 0;
     }
-
 
 }

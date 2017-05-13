@@ -17,6 +17,10 @@ public class ShelterFindResponse extends BaseResponse {
     @ElementList(name="shelters", required=false)
     List<Shelter> shelters;
 
+    @Element(name="lastOffset", required=false)
+    String lastOffset;
+
+
     public List<Shelter> getShelters() {return this.shelters;}
     public void setShelters(List<Shelter> value) {this.shelters = value;}
 
@@ -102,4 +106,11 @@ public class ShelterFindResponse extends BaseResponse {
 
     }
 
+    public String getLastOffset() {
+        return lastOffset;
+    }
+
+    public void setLastOffset(String lastOffset) {
+        this.lastOffset = lastOffset;
+    }
 }

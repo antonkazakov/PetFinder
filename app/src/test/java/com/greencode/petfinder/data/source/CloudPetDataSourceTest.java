@@ -6,7 +6,7 @@ import com.greencode.petfinder.data.cache.PetCache;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.mappers.PetMapper;
-import com.greencode.petfinder.data.source.pet.CloudPetDataSource;
+import com.greencode.petfinder.data.sources.pets.CloudPetDataSource;
 
 import org.junit.After;
 import org.junit.Before;

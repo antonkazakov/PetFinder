@@ -10,10 +10,10 @@ import android.view.ViewGroup;
  * @date 14.04.17.
  */
 
-public interface DelegateAdapter {
+public interface DelegateAdapter<T extends ViewItem> {
 
     RecyclerView.ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent);
 
-    void onBindViewHolder(RecyclerView.ViewHolder holder, ViewItem viewItem);
+    void onBindViewHolder(RecyclerView.ViewHolder holder, T t);
 
 }

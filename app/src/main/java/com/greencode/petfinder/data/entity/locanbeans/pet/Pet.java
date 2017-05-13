@@ -147,7 +147,6 @@ public class Pet extends RealmObject{
         if (!animal.equals(pet.animal)) return false;
         if (!age.equals(pet.age)) return false;
         if (!size.equals(pet.size)) return false;
-        if (!photos.equals(pet.photos)) return false;
         return contact.equals(pet.contact);
     }
 
@@ -159,7 +158,6 @@ public class Pet extends RealmObject{
         result = 31 * result + animal.hashCode();
         result = 31 * result + age.hashCode();
         result = 31 * result + size.hashCode();
-        result = 31 * result + photos.hashCode();
         result = 31 * result + contact.hashCode();
         return result;
     }

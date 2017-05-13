@@ -45,7 +45,11 @@ public class ShelterCache implements Cache<Shelter> {
 
     @Override
     public void put(Shelter shelter) {
-
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.insertOrUpdate(shelter);
+        realm.commitTransaction();
+        realm.close();
     }
 
     @Override
@@ -59,6 +63,11 @@ public class ShelterCache implements Cache<Shelter> {
 
     @Override
     public boolean isExpired() {
+        final Realm realm = Realm.getDefaultInstance();
+        if (realm.where(Shelter.class).count() == 0){
+            return true;
+        }
+        realm.close();
         return false;
     }
 

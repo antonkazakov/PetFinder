@@ -11,4 +11,6 @@ public interface BaseView<T extends BasePresenter> {
 
     void showError(String text);
 
+    void showLoading(boolean isLoading);
+
 }

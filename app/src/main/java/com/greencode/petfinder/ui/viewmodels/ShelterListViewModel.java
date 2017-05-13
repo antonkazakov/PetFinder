@@ -27,6 +27,17 @@ public class ShelterListViewModel {
 
     private String distanceFromPosition;
 
+    double latitude;
+
+    double longitude;
+
+    /**
+     * 0 - near < 10 km
+     * 1 - middle < 50 km
+     * 2 - far > 100 km
+     */
+    private Integer distanceFactor;
+
     public String getId() {
         return id;
     }
@@ -105,5 +116,29 @@ public class ShelterListViewModel {
 
     public void setDistanceFromPosition(String distanceFromPosition) {
         this.distanceFromPosition = distanceFromPosition;
+    }
+
+    public Integer getDistanceFactor() {
+        return distanceFactor;
+    }
+
+    public void setDistanceFactor(Integer distanceFactor) {
+        this.distanceFactor = distanceFactor;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
