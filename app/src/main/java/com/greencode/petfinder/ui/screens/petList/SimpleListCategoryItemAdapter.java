@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.DelegateAdapter;
+import com.greencode.petfinder.ui.viewmodels.baseModels.DoubleTextLineViewItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
  * @date 26.04.17.
  */
 
-public class SimpleListCategoryItemAdapter implements DelegateAdapter<SimpleListCategoryItem> {
+public class SimpleListCategoryItemAdapter implements DelegateAdapter<DoubleTextLineViewItem> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -26,9 +27,9 @@ public class SimpleListCategoryItemAdapter implements DelegateAdapter<SimpleList
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, SimpleListCategoryItem simpleListCategoryItem) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, DoubleTextLineViewItem simpleListCategoryItem) {
         SimpleListCategoryItemViewHolder simpleListCategoryItemViewHolder = (SimpleListCategoryItemViewHolder) holder;
-        simpleListCategoryItemViewHolder.tvCategoryName.setText(simpleListCategoryItem.getTitle());
+        simpleListCategoryItemViewHolder.tvCategoryName.setText(simpleListCategoryItem.getPrimaryText());
     }
 
     public static class SimpleListCategoryItemViewHolder extends RecyclerView.ViewHolder {

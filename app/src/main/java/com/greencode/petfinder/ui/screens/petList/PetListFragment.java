@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -100,6 +101,15 @@ public class PetListFragment extends Fragment implements SinglePetClickListenerE
     }
 
     void initRecyclerView(){
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+//        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//            @Override
+//            public int getSpanSize(int position) {
+//                if (position == 2)
+//                    return 1;
+//                return 2;
+//            }
+//        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setEmptyView(tvEmpty);
         recyclerView.setAdapter(petListGodAdapter);

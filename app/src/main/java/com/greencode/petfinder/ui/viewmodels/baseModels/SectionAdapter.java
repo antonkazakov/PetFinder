@@ -1,4 +1,4 @@
-package com.greencode.petfinder.ui.screens.shelterSingle;
+package com.greencode.petfinder.ui.viewmodels.baseModels;
 
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.DelegateAdapter;
+import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
  * @date 30.04.17.
  */
 
-public class SectionAdapter implements DelegateAdapter<ShelterPageSectionItem> {
+public class SectionAdapter implements DelegateAdapter<SectionViewItem> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -27,10 +28,10 @@ public class SectionAdapter implements DelegateAdapter<ShelterPageSectionItem> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, ShelterPageSectionItem shelterPageSectionItem) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, SectionViewItem shelterPageSectionItem) {
         SectionViewHolder sectionViewHolder = (SectionViewHolder) holder;
-        sectionViewHolder.tvValue.setText(shelterPageSectionItem.getValue());
-        sectionViewHolder.tvValue.setTextColor(ContextCompat.getColor(sectionViewHolder.itemView.getContext(),shelterPageSectionItem.getColor()));
+        sectionViewHolder.tvValue.setText(shelterPageSectionItem.getTextValue());
+        sectionViewHolder.tvValue.setTextColor(ContextCompat.getColor(sectionViewHolder.itemView.getContext(),shelterPageSectionItem.getTextColor()));
     }
 
     public static class SectionViewHolder extends RecyclerView.ViewHolder {

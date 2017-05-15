@@ -23,6 +23,7 @@ import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
 import com.greencode.petfinder.ui.screens.petList.TestFuckItem;
 import com.greencode.petfinder.ui.screens.petSingle.SinglePetActivity;
+import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +95,7 @@ public class ShelterPageFragment extends Fragment implements ShelterPageContract
                 .append("&zoom=17&size=1000x600&key=AIzaSyD4_XFCyfKq2QsR2JA60Ta382RVOtYriU4")
                 .toString();
         viewItems.add(new ShelterPageHeaderViewItem(test2));
-        viewItems.add(new ShelterPageSectionItem("Contacts", R.color.greenPrimary));
+        viewItems.add(new SectionViewItem("Contacts", R.color.greenPrimary));
         viewItems.add(new SimpleShelterItemView("Name", bundle.getString("name", "N/A")));
         viewItems.add(new SimpleShelterItemView("Address", bundle.getString("address", "N/A")));
         viewItems.add(new SimpleShelterItemView("Phone", bundle.getString("phone", "N/A")));

@@ -28,7 +28,7 @@
             android:name=".ui.screens.shelterSingle.ShelterPageActivity"
             android:label="@string/title_activity_shelter_page"
             android:theme="@style/SheltersTheme" />
-        <activity android:name=".ui.screens.petSingle.PetPhotoViewActivity"></activity>
+        <activity android:name=".ui.screens.petSingle.PetPhotoViewActivity" />
     </application>
 
 </manifest>

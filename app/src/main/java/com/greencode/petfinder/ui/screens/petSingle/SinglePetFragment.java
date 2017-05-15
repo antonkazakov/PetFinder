@@ -26,7 +26,7 @@ import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petSingle.viewitems.BigTextViewItem;
-import com.greencode.petfinder.ui.screens.shelterSingle.ShelterPageSectionItem;
+import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 import com.greencode.petfinder.ui.screens.shelterSingle.SimpleShelterItemView;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -145,9 +145,9 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         viewItems.add(new SimpleShelterItemView("Name", pet.getName()));
         viewItems.add(new SimpleShelterItemView("Age", pet.getAge()));
         viewItems.add(new SimpleShelterItemView("Sex", pet.getSex()));
-        viewItems.add(new ShelterPageSectionItem("About", R.color.colorPrimary));
+        viewItems.add(new SectionViewItem("About", R.color.colorPrimary));
         viewItems.add(new BigTextViewItem(pet.getDescription()));
-        viewItems.add(new ShelterPageSectionItem("Neighbors", R.color.colorPrimary));
+        viewItems.add(new SectionViewItem("Neighbors", R.color.colorPrimary));
         singlePetGodAdapter.updateData(viewItems);
     }
 

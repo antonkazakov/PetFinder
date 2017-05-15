@@ -8,7 +8,7 @@ import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.DelegateAdapter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petSingle.viewitems.BitTextDelegateAdapter;
-import com.greencode.petfinder.ui.screens.shelterSingle.SectionAdapter;
+import com.greencode.petfinder.ui.viewmodels.baseModels.SectionAdapter;
 import com.greencode.petfinder.ui.screens.shelterSingle.ShelterSimpleAdapter;
 
 import java.util.ArrayList;

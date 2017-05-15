@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.DelegateAdapter;
+import com.greencode.petfinder.ui.viewmodels.baseModels.DoubleTextLineViewItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
  * @date 29.04.17.
  */
 
-public class ShelterSimpleAdapter implements DelegateAdapter<SimpleShelterItemView> {
+public class ShelterSimpleAdapter implements DelegateAdapter<DoubleTextLineViewItem> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -26,10 +27,10 @@ public class ShelterSimpleAdapter implements DelegateAdapter<SimpleShelterItemVi
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, SimpleShelterItemView simpleShelterItemView) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, DoubleTextLineViewItem simpleShelterItemView) {
         ShelterSimpleItemViewHolder shelterSimpleItemViewHolder = (ShelterSimpleItemViewHolder) holder;
-        shelterSimpleItemViewHolder.tvName.setText(simpleShelterItemView.getName());
-        shelterSimpleItemViewHolder.tvValue.setText(simpleShelterItemView.getValue());
+        shelterSimpleItemViewHolder.tvName.setText(simpleShelterItemView.getPrimaryText());
+        shelterSimpleItemViewHolder.tvValue.setText(simpleShelterItemView.getSecondaryText());
     }
 
     public static class ShelterSimpleItemViewHolder extends RecyclerView.ViewHolder {

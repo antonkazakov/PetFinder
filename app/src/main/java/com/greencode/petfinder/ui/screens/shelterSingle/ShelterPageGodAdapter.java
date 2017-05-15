@@ -10,6 +10,8 @@ import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
 import com.greencode.petfinder.ui.screens.petList.SinglePetListItemViewAdapter;
 import com.greencode.petfinder.ui.screens.petList.TestFuckItem;
+import com.greencode.petfinder.ui.viewmodels.baseModels.SectionAdapter;
+import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,7 +64,7 @@ public class ShelterPageGodAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public void updateData1(List<TestFuckItem> viewItems12){
-        viewItems.add(new ShelterPageSectionItem("Our Pets", R.color.greenPrimary));
+        viewItems.add(new SectionViewItem("Our Pets", R.color.greenPrimary));
         viewItems.addAll(viewItems12);
         notifyDataSetChanged();
     }
