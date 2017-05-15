@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class SinglePetFragment extends Fragment implements SinglePetContract.View {
+public class SinglePetFragment extends Fragment implements SinglePetContract.View, SinglePetViewPagerAdapter.SinglePetPhotoClickListener {
 
     private SinglePetViewPagerAdapter photoViewPagerAdapter;
 
@@ -51,10 +51,6 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
     SinglePetPresenter singlePetPresenter;
 
     SinglePetComponent singlePetComponent;
-
-    public SinglePetFragment() {
-    }
-
     AppBarLayout appBarLayout;
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbar;
@@ -63,6 +59,18 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
+    public SinglePetFragment() {
+    }
+
+    public static SinglePetFragment newInstance(String id, String url) {
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        args.putString("url", url);
+        SinglePetFragment fragment = new SinglePetFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,8 +81,6 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
-
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
@@ -103,14 +109,6 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         return view;
     }
 
-    public static SinglePetFragment newInstance(String id, String url) {
-        Bundle args = new Bundle();
-        args.putString("id", id);
-        args.putString("url", url);
-        SinglePetFragment fragment = new SinglePetFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -129,11 +127,9 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         MenuItem shareItem = menu.add("Share");
-        shareItem.setIcon(R.drawable.ic_toolbar_options);
+        shareItem.setIcon(R.drawable.ic_action_share_white);
         shareItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        shareItem.setOnMenuItemClickListener(item -> {
-            return true;
-        });
+        shareItem.setOnMenuItemClickListener(item -> true);
     }
 
     @Override
@@ -176,16 +172,16 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
 
     }
 
-    private void showShareDialog(String id) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("");
-        stringBuilder.append("https://www.petfinder.com/petdetail/");
-        stringBuilder.append(id);
-
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, stringBuilder.toString());
-        intent.setType("text/plain");
-        startActivity(Intent.createChooser(intent, "te"));
+    private void goToPhotoActivity(int activePosition) {
+        Intent intent = new Intent(getActivity(), PetPhotoViewActivity.class);
+        intent.putParcelableArrayListExtra("photos", new ArrayList<>(photos));
+        intent.putExtra("position", activePosition);
+        startActivity(intent);
     }
+
+    @Override
+    public void onPhotoClicked(int position) {
+        goToPhotoActivity(position);
+    }
+
 }

@@ -25,7 +25,7 @@ public class ShelterPageGodAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private Map<Integer, DelegateAdapter> adapters = new HashMap<>();
 
-    List<ViewItem> viewItems = new ArrayList<>();
+    private List<ViewItem> viewItems = new ArrayList<>();
 
     SinglePetClickListener singlePetClickListener;
 

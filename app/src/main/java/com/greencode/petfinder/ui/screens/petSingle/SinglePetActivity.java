@@ -2,6 +2,7 @@ package com.greencode.petfinder.ui.screens.petSingle;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,7 +17,8 @@ public class SinglePetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_pet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_action_arrow_back_white));
 
         SinglePetFragment singlePetFragment;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

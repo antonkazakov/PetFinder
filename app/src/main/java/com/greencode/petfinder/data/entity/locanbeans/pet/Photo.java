@@ -1,5 +1,10 @@
 package com.greencode.petfinder.data.entity.locanbeans.pet;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -8,7 +13,7 @@ import io.realm.annotations.PrimaryKey;
  * @date 29.03.17.
  */
 
-public class Photo extends RealmObject {
+public class Photo extends RealmObject implements Parcelable {
 
     @PrimaryKey
     private String id;
@@ -66,4 +71,32 @@ public class Photo extends RealmObject {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.url);
+    }
+
+    protected Photo(Parcel in) {
+        this.id = in.readString();
+        this.url = in.readString();
+    }
+
+    public static final Parcelable.Creator<Photo> CREATOR = new Parcelable.Creator<Photo>() {
+        @Override
+        public Photo createFromParcel(Parcel source) {
+            return new Photo(source);
+        }
+
+        @Override
+        public Photo[] newArray(int size) {
+            return new Photo[size];
+        }
+    };
 }
