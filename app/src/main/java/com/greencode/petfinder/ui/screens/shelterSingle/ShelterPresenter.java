@@ -3,6 +3,7 @@ package com.greencode.petfinder.ui.screens.shelterSingle;
 import android.content.Intent;
 import android.util.Log;
 
+import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 import com.greencode.petfinder.data.repository.SheltersRepository;
 import com.greencode.petfinder.ui.screens.petList.PetListMapper;
 
@@ -39,8 +40,11 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
         map.put("id", id);
         map.put("key", "77cffd89b0d4cca16a350862872c2261");
         sheltersRepository.getShelter(map)
-                .subscribe(shelter -> {
-                    view.onShelterLoaded(shelter);
+                .subscribe(new Action1<Shelter>() {
+                    @Override
+                    public void call(Shelter shelter) {
+                        view.onShelterLoaded(shelter);
+                    }
                 }, throwable -> {
                     view.showError(throwable.getLocalizedMessage());
                 });
@@ -57,11 +61,8 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
                 .subscribe(testFuckItems -> {
                     Log.i("sfsdf", "getSheltersPet: " + testFuckItems.size());
                     view.onPetsFromShelterLoaded(testFuckItems);
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Log.e("TEST", "call: ", throwable);
-                    }
+                }, throwable -> {
+                    Log.e("TEST", "call: ", throwable);
                 });
     }
 

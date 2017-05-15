@@ -6,7 +6,7 @@ import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.ViewItem;
 
 /**
- * Section viewItem used in recyclerviews across the app
+ * Section viewItem used in recyclerViews across the app
  * textValue - textValue of the header text
  * textColor - textColor
  * @author Anton Kazakov

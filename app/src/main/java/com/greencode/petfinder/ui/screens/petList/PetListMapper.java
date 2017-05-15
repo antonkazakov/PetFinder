@@ -1,6 +1,7 @@
 package com.greencode.petfinder.ui.screens.petList;
 
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
+import com.greencode.petfinder.ui.base.ViewItem;
 
 import java.util.ArrayList;
 import java.util.List;

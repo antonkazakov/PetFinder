@@ -4,13 +4,18 @@ import android.support.annotation.NonNull;
 
 import com.greencode.petfinder.data.api.ApiService;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -32,9 +37,11 @@ public class NetworkModule {
     @NonNull
     @Singleton
     @Provides
-    public static OkHttpClient provideOkHttp(@NonNull HttpLoggingInterceptor httpLoggingInterceptor) {
+    public static OkHttpClient provideOkHttp(@NonNull HttpLoggingInterceptor httpLoggingInterceptor,
+                                             @NonNull Interceptor keyInterceptor) {
         return new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
+                .addNetworkInterceptor(keyInterceptor)
                 .build();
     }
 
@@ -72,6 +79,20 @@ public class NetworkModule {
     @Singleton
     public ApiService provideApiService(Retrofit retrofit){
         return retrofit.create(ApiService.class);
+    }
+
+
+    @NonNull
+    @Provides
+    @Singleton
+    public Interceptor provideKeyInterceptor(){
+        return chain -> {
+            Request request = chain.request();
+            HttpUrl httpUrl = request.url().newBuilder().addQueryParameter("key", "").build();
+            request = request.newBuilder().url(httpUrl).build();
+            chain.proceed(request);
+            return null;
+        };
     }
 
     @NonNull

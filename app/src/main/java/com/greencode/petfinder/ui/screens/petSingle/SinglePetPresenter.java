@@ -2,6 +2,7 @@ package com.greencode.petfinder.ui.screens.petSingle;
 
 import android.util.Log;
 
+import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.repository.PetRepository;
 
 import java.util.HashMap;
@@ -40,8 +41,11 @@ public class SinglePetPresenter implements SinglePetContract.Presenter {
         repository.getPet(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(pet -> {
-                    view.showPet(pet);
+                .subscribe(new Action1<Pet>() {
+                    @Override
+                    public void call(Pet pet) {
+                        view.showPet(pet);
+                    }
                 }, throwable -> {
                     Log.e("SINGLE", "call: ",throwable );
                 });
