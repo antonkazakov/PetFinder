@@ -1,0 +1,100 @@
+package com.greencode.petfinder.data.sources.pets;
+
+import com.greencode.petfinder.data.cache.PetCache;
+import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import rx.Observable;
+import rx.observers.TestSubscriber;
+
+import static org.junit.Assert.*;
+
+/**
+ * @author Anton Kazakov
+ * @date 17.05.17.
+ */
+public class LocalPetDataSourceTest {
+
+    @Mock
+    PetCache petCache;
+
+    private LocalPetDataSource localPetDataSource;
+
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+        localPetDataSource = new LocalPetDataSource(petCache);
+    }
+
+    @Test
+    public void getPet() throws Exception {
+        Pet pet = new Pet();
+        //given
+        Mockito.when(petCache.get(Mockito.anyString())).thenReturn(Observable.just(pet));
+
+        TestSubscriber<Pet> petTestSubscriber = new TestSubscriber<>();
+        localPetDataSource.getPet("").subscribe(petTestSubscriber);
+
+        //then
+        petTestSubscriber.assertCompleted();
+        petTestSubscriber.assertNoErrors();
+        Assert.assertEquals(pet, petTestSubscriber.getOnNextEvents().get(0));
+    }
+
+    @Test
+    public void findPet() throws Exception {
+        List<Pet> pets = fakePets();
+        //given
+        Mockito.when(petCache.getAll()).thenReturn(Observable.just(pets));
+
+        TestSubscriber<List<Pet>> petTestSubscriber = new TestSubscriber<>();
+        localPetDataSource.findPet(new HashMap<>()).subscribe(petTestSubscriber);
+
+        //then
+        petTestSubscriber.assertNoErrors();
+        petTestSubscriber.assertCompleted();
+        Assert.assertEquals(pets.get(0),petTestSubscriber.getOnNextEvents().get(0).get(0));
+    }
+
+    @Test
+    @Ignore
+    public void getRandomPet() throws Exception {
+
+    }
+
+    @Test
+    public void getSheltersPet() throws Exception {
+        List<Pet> pets = fakePets();
+        //given
+        Mockito.when(petCache.getAll()).thenReturn(Observable.just(pets));
+
+        TestSubscriber<List<Pet>> petTestSubscriber = new TestSubscriber<>();
+        localPetDataSource.getSheltersPet(new HashMap<>()).subscribe(petTestSubscriber);
+
+        //then
+        petTestSubscriber.assertNoErrors();
+        petTestSubscriber.assertCompleted();
+        Assert.assertEquals(pets.get(0),petTestSubscriber.getOnNextEvents().get(0).get(0));
+    }
+
+    public List<Pet> fakePets(){
+        return new ArrayList<Pet>(){{
+            add(new Pet());
+            add(new Pet());
+            add(new Pet());
+            add(new Pet());
+        }};
+    }
+
+}

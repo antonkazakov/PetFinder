@@ -61,6 +61,7 @@ public class PetMapperTest {
         contact.setZipcode("H2L 3L7");
         expectedPet.setContact(contact);
 
+        assertNotNull(actualPet);
         assertEquals(expectedPet, actualPet);
     }
 

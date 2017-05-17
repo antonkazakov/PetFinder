@@ -32,6 +32,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 ext {
@@ -103,11 +104,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:10.2.1'
     compile 'com.google.android.gms:play-services-location:10.2.1'
     compile 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
-    testCompile 'org.powermock:powermock-module-junit4:1.6.4'
-    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.4'
-    testCompile 'org.powermock:powermock-api-mockito:1.6.4'
-    testCompile 'org.powermock:powermock-classloading-xstream:1.6.4'
-    testCompile 'org.mockito:mockito-core:2.+'
+    testCompile 'org.mockito:mockito-core:2.7.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     provided 'javax.annotation:jsr250-api:1.0'
 }

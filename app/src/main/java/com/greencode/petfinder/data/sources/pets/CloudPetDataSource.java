@@ -36,7 +36,7 @@ public class CloudPetDataSource implements PetDataSource {
     public Observable<Pet> getPet(String id) {
         return apiService.getPet(id, "77cffd89b0d4cca16a350862872c2261")
                 .flatMap(petResponse -> Observable.just(petMapper.transform(petResponse)))
-               // .doOnNext(pet -> petCache.put(pet))
+                //.doOnNext(pet -> petCache.put(pet))
                 .flatMap(Observable::just)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
