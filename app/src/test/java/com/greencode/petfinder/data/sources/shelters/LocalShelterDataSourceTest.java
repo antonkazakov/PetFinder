@@ -5,6 +5,7 @@ import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -52,9 +53,18 @@ public class LocalShelterDataSourceTest {
 
     @Test
     public void getShelter() throws Exception {
+        Shelter shelter = new Shelter();
+        //given
+        Mockito.when(shelterCache.get(Mockito.anyString())).thenReturn(Observable.just(shelter));
+        TestSubscriber<Shelter> shelterTestSubscriber = new TestSubscriber<>();
+        localShelterDataSource.getShelter(new HashMap<>()).subscribe(shelterTestSubscriber);
 
+        shelterTestSubscriber.assertCompleted();
+        shelterTestSubscriber.assertNoErrors();
+        Assert.assertEquals(shelter, shelterTestSubscriber.getOnNextEvents().get(0));
     }
 
+    @Ignore
     @Test
     public void getPetsInShelter() throws Exception {
 

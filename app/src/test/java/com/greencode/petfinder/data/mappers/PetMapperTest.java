@@ -25,7 +25,7 @@ public class PetMapperTest {
 
     private SimpleXMLParser simpleXMLParser;
 
-    private static final String GET_PET_RESPONSE = "/Users/antonkazakov/android/PetFinder/app/src/test/resources/xml/petfind.xml";
+    private static final String GET_PET_RESPONSE = "/Users/antonkazakov/android/PetFinder/app/src/test/resources/xml/get_pet.xml";
 
     @Before
     public void setUp() throws Exception {

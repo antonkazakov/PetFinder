@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<petfinder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://api.petfinder.com/schemas/0.9/petfinder.xsd">
+    <header>
+        <version>0.1</version>
+        <timestamp>2017-05-18T11:28:52Z</timestamp>
+        <status>
+            <code>100</code>
+            <message />
+        </status>
+    </header>
+    <pet>
+        <id>37249155</id>
+        <shelterId>IL252</shelterId>
+        <shelterPetId>16-0476</shelterPetId>
+        <name>Jeffrey</name>
+        <animal>Cat</animal>
+        <breeds>
+            <breed>Domestic Short Hair</breed>
+        </breeds>
+        <mix>no</mix>
+        <age>Adult</age>
+        <sex>M</sex>
+        <size>M</size>
+        <options>
+            <option>hasShots</option>
+            <option>altered</option>
+            <option>noCats</option>
+        </options>
+        <description>
+            <![CDATA[Jeffery is a very nice cat, that loves attention! He does have a sensitive stomach, so he is on a sensitive stomach diet which is easily available at any pet store! Do to his diet, it would be nice if Jeffery was the only cat in the household or could be with other cats that could be transitioned to his diet. He would also do well in a household with children! If you have any questions or would like to adopt him please contact CatNap!]]>
+        </description>
+        <lastUpdate>2017-02-18T20:45:17Z</lastUpdate>
+        <status>A</status>
+        <media>
+            <photos>
+                <photo id="1" size="pnt">http://photos.petfinder.com/photos/pets/37249155/1/?bust=1485114390&amp;width=60&amp;-pnt.jpg</photo>
+                <photo id="1" size="fpm">http://photos.petfinder.com/photos/pets/37249155/1/?bust=1485114390&amp;width=95&amp;-fpm.jpg</photo>
+                <photo id="1" size="x">http://photos.petfinder.com/photos/pets/37249155/1/?bust=1485114390&amp;width=500&amp;-x.jpg</photo>
+                <photo id="1" size="pn">http://photos.petfinder.com/photos/pets/37249155/1/?bust=1485114390&amp;width=300&amp;-pn.jpg</photo>
+                <photo id="1" size="t">http://photos.petfinder.com/photos/pets/37249155/1/?bust=1485114390&amp;width=50&amp;-t.jpg</photo>
+                <photo id="2" size="pnt">http://photos.petfinder.com/photos/pets/37249155/2/?bust=1485114391&amp;width=60&amp;-pnt.jpg</photo>
+                <photo id="2" size="fpm">http://photos.petfinder.com/photos/pets/37249155/2/?bust=1485114391&amp;width=95&amp;-fpm.jpg</photo>
+                <photo id="2" size="x">http://photos.petfinder.com/photos/pets/37249155/2/?bust=1485114391&amp;width=500&amp;-x.jpg</photo>
+                <photo id="2" size="pn">http://photos.petfinder.com/photos/pets/37249155/2/?bust=1485114391&amp;width=300&amp;-pn.jpg</photo>
+                <photo id="2" size="t">http://photos.petfinder.com/photos/pets/37249155/2/?bust=1485114391&amp;width=50&amp;-t.jpg</photo>
+                <photo id="3" size="pnt">http://photos.petfinder.com/photos/pets/37249155/3/?bust=1485114391&amp;width=60&amp;-pnt.jpg</photo>
+                <photo id="3" size="fpm">http://photos.petfinder.com/photos/pets/37249155/3/?bust=1485114391&amp;width=95&amp;-fpm.jpg</photo>
+                <photo id="3" size="x">http://photos.petfinder.com/photos/pets/37249155/3/?bust=1485114391&amp;width=500&amp;-x.jpg</photo>
+                <photo id="3" size="pn">http://photos.petfinder.com/photos/pets/37249155/3/?bust=1485114391&amp;width=300&amp;-pn.jpg</photo>
+                <photo id="3" size="t">http://photos.petfinder.com/photos/pets/37249155/3/?bust=1485114391&amp;width=50&amp;-t.jpg</photo>
+            </photos>
+        </media>
+        <contact>
+            <address1>1101 Beach Avenue</address1>
+            <address2 />
+            <city>LaGrange Park</city>
+            <state>IL</state>
+            <zip>60526</zip>
+            <phone>708-352-3914</phone>
+            <fax>708-352-3941</fax>
+            <email>catnapqueen@yahoo.com</email>
+        </contact>
+    </pet>
+</petfinder>

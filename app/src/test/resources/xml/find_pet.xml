@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<petfinder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://api.petfinder.com/schemas/0.9/petfinder.xsd">
+    <header>
+        <version>0.1</version>
+        <timestamp>2017-05-18T11:25:08Z</timestamp>
+        <status>
+            <code>100</code>
+            <message />
+        </status>
+    </header>
+    <lastOffset>2</lastOffset>
+    <pets>
+        <pet>
+            <id>31754362</id>
+            <shelterId>AK26</shelterId>
+            <shelterPetId />
+            <name>Aurora</name>
+            <animal>Dog</animal>
+            <breeds>
+                <breed>Labrador Retriever</breed>
+                <breed>Staffordshire Bull Terrier</breed>
+            </breeds>
+            <mix>yes</mix>
+            <age>Young</age>
+            <sex>F</sex>
+            <size>L</size>
+            <options>
+                <option>hasShots</option>
+                <option>altered</option>
+                <option>noCats</option>
+                <option>housetrained</option>
+            </options>
+            <description>
+                <![CDATA[Aurora is a young dog, lots of energy, and needs an active owner.  She can be a cuddle bug, but she also requires exercise.  She is a dominate female, so she does not get along with all dogs, but is trainable. She will make a very good companion with some time and effort.]]>
+            </description>
+            <lastUpdate>2017-04-06T18:57:51Z</lastUpdate>
+            <status>A</status>
+            <media>
+                <photos>
+                    <photo id="1" size="pnt">http://photos.petfinder.com/photos/pets/31754362/1/?bust=1491505071&amp;width=60&amp;-pnt.jpg</photo>
+                    <photo id="1" size="fpm">http://photos.petfinder.com/photos/pets/31754362/1/?bust=1491505071&amp;width=95&amp;-fpm.jpg</photo>
+                    <photo id="1" size="x">http://photos.petfinder.com/photos/pets/31754362/1/?bust=1491505071&amp;width=500&amp;-x.jpg</photo>
+                    <photo id="1" size="pn">http://photos.petfinder.com/photos/pets/31754362/1/?bust=1491505071&amp;width=300&amp;-pn.jpg</photo>
+                    <photo id="1" size="t">http://photos.petfinder.com/photos/pets/31754362/1/?bust=1491505071&amp;width=50&amp;-t.jpg</photo>
+                </photos>
+            </media>
+            <contact>
+                <address1>1360 Old Richardson Hwy</address1>
+                <address2 />
+                <city>North Pole</city>
+                <state>AK</state>
+                <zip>99705</zip>
+                <phone>907-488-0516/347-4829  </phone>
+                <fax>none</fax>
+                <email>lcar.alaska@gmail.com</email>
+            </contact>
+        </pet>
+        <pet>
+            <id>36917359</id>
+            <shelterId>AK26</shelterId>
+            <shelterPetId />
+            <name>Rosie</name>
+            <animal>Dog</animal>
+            <breeds>
+                <breed>Labrador Retriever</breed>
+                <breed>Greater Swiss Mountain Dog</breed>
+            </breeds>
+            <mix>yes</mix>
+            <age>Adult</age>
+            <sex>F</sex>
+            <size>L</size>
+            <options>
+                <option>hasShots</option>
+                <option>altered</option>
+                <option>housetrained</option>
+            </options>
+            <description>
+                <![CDATA[Rosie is a nice dog, but she is food aggressive with other dogs.  We recommend no small children and if you have other dogs, would recommend a introduction to see how they like each other.]]>
+            </description>
+            <lastUpdate>2017-04-06T18:57:51Z</lastUpdate>
+            <status>A</status>
+            <media>
+                <photos>
+                    <photo id="1" size="pnt">http://photos.petfinder.com/photos/pets/36917359/1/?bust=1491505071&amp;width=60&amp;-pnt.jpg</photo>
+                    <photo id="1" size="fpm">http://photos.petfinder.com/photos/pets/36917359/1/?bust=1491505071&amp;width=95&amp;-fpm.jpg</photo>
+                    <photo id="1" size="x">http://photos.petfinder.com/photos/pets/36917359/1/?bust=1491505071&amp;width=500&amp;-x.jpg</photo>
+                    <photo id="1" size="pn">http://photos.petfinder.com/photos/pets/36917359/1/?bust=1491505071&amp;width=300&amp;-pn.jpg</photo>
+                    <photo id="1" size="t">http://photos.petfinder.com/photos/pets/36917359/1/?bust=1491505071&amp;width=50&amp;-t.jpg</photo>
+                </photos>
+            </media>
+            <contact>
+                <address1>1360 Old Richardson Hwy</address1>
+                <address2 />
+                <city>North Pole</city>
+                <state>AK</state>
+                <zip>99705</zip>
+                <phone>907-488-0516/347-4829  </phone>
+                <fax>none</fax>
+                <email>lcar.alaska@gmail.com</email>
+            </contact>
+        </pet>
+    </pets>
+</petfinder>

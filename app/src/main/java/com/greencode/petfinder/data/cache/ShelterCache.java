@@ -1,6 +1,7 @@
 package com.greencode.petfinder.data.cache;
 
 import com.greencode.petfinder.R;
+import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 import com.greencode.petfinder.data.entity.locanbeans.simplelocation.SimpleLocation;
 
@@ -40,7 +41,14 @@ public class ShelterCache implements Cache<Shelter> {
 
     @Override
     public Observable<Shelter> get(String id) {
-        return null;
+        final Realm realm = Realm.getDefaultInstance();
+        return realm.where(Shelter.class)
+                .equalTo("id", id)
+                .findFirst()
+                .asObservable()
+                .cast(Shelter.class)
+                .map(realm::copyFromRealm)
+                .doOnTerminate(realm::close);
     }
 
     @Override

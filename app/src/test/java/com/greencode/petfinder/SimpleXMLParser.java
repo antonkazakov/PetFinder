@@ -23,8 +23,13 @@ public class SimpleXMLParser implements IParser {
     }
 
     @Override
-    public <T> T parse(@NonNull String source, @NonNull Class<T> clazz) throws Exception {
-        return serializer.read(clazz, new File(source));
+    public <T> T parse(@NonNull String source, @NonNull Class<T> clazz) {
+        try {
+            return serializer.read(clazz, new File(source));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("SOME PARSING ERROR", e);
+        }
     }
 
 }

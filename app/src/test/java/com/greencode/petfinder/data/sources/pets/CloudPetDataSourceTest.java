@@ -5,21 +5,25 @@ import com.greencode.petfinder.data.api.ApiService;
 import com.greencode.petfinder.data.cache.PetCache;
 import com.greencode.petfinder.data.entity.beans.pet.PetFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
+import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.mappers.PetMapper;
-import com.greencode.petfinder.data.sources.pets.CloudPetDataSource;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.stubbing.answers.ThrowsExceptionClass;
+import org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNulls;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.simpleframework.xml.core.Persister;
 
 import java.util.HashMap;
+import java.util.List;
 
 import rx.Observable;
 import rx.observers.TestSubscriber;
@@ -31,7 +35,7 @@ import rx.observers.TestSubscriber;
 @RunWith(MockitoJUnitRunner.class)
 public class CloudPetDataSourceTest {
 
-    private static final String GET_PET_RESPONSE = "/Users/antonkazakov/android/PetFinder/app/src/test/resources/xml/petfind.xml";
+    private static final String GET_PET_RESPONSE = "/Users/antonkazakov/android/PetFinder/app/src/test/resources/xml/get_pet.xml";
 
     private Persister persister;
     private SimpleXMLParser simpleXMLParser;
@@ -56,36 +60,35 @@ public class CloudPetDataSourceTest {
 
     @After
     public void tearDown() throws Exception {
-
     }
 
     @Test
     public void getPetSuccessTest() throws Exception {
         Mockito.when(apiService.getPet(Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetGetResponse.class)));
-
-        TestSubscriber<PetGetResponse> testSubscriber = new TestSubscriber<>();
-
-        apiService.getPet("", "").subscribe(testSubscriber);
-        // Mockito.verify(petMapper,Mockito.times(1)).transform(Mockito.any(PetGetResponse.class));
+        Mockito.when(petMapper.transform(Mockito.any(PetGetResponse.class)))
+                .thenCallRealMethod();
+        TestSubscriber<Pet> testSubscriber = new TestSubscriber<>();
+        cloudPetDataSource.getPet("dummy").subscribe(testSubscriber);
+        testSubscriber.awaitTerminalEvent();
+        Mockito.verify(petMapper,Mockito.times(1)).transform(Mockito.any(PetGetResponse.class));
         testSubscriber.assertNoErrors();
-        testSubscriber.assertCompleted();
-        Assert.assertEquals("37432659", testSubscriber.getOnNextEvents().get(0).getPet().getId());
+        Assert.assertEquals("37432659", testSubscriber.getOnNextEvents().get(0).getId());
     }
 
     @Test
     public void findPetSuccessTest() throws Exception {
         Mockito.when(apiService.findPet(Mockito.anyMap()))
-                .thenReturn(Observable.just(simpleXMLParser.parse("", PetFindResponse.class)));
+                .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetFindResponse.class)));
+        Mockito.when(petMapper.transform(Mockito.any(PetGetResponse.class))).thenCallRealMethod();
+        TestSubscriber<List<Pet>> testSubscriber = new TestSubscriber<>();
 
-        TestSubscriber<PetFindResponse> testSubscriber = new TestSubscriber<>();
-
-        apiService.findPet(new HashMap<>()).subscribe(testSubscriber);
+        cloudPetDataSource.findPet(new HashMap<>()).subscribe(testSubscriber);
 
         //Mockito.verify(petCache, Mockito.times(1)).putAll(Mockito.anyList());
         testSubscriber.assertNoErrors();
         testSubscriber.assertCompleted();
-        //Assert.assertEquals("", testSubscriber.getOnNextEvents().get(0).getPets().get(0).getId());
+        Assert.assertEquals("37432659", testSubscriber.getOnNextEvents().get(0).get(0).getId());
     }
 
 

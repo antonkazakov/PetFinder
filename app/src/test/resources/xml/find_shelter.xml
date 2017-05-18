@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<petfinder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://api.petfinder.com/schemas/0.9/petfinder.xsd">
+    <header>
+        <version>0.1</version>
+        <timestamp>2017-05-18T11:26:54Z</timestamp>
+        <status>
+            <code>100</code>
+            <message />
+        </status>
+    </header>
+    <lastOffset>27</lastOffset>
+    <shelters>
+        <shelter>
+            <id>AK26</id>
+            <name>Loving Companions Animal Rescue Inc.</name>
+            <address1>1360 Old Richardson Hwy</address1>
+            <address2 />
+            <city>North Pole</city>
+            <state>AK</state>
+            <zip>99705</zip>
+            <country>US</country>
+            <latitude>64.7737</latitude>
+            <longitude>-147.3391</longitude>
+            <phone>907-488-0516/347-4829  </phone>
+            <fax>none</fax>
+            <email>lcar.alaska@gmail.com</email>
+        </shelter>
+        <shelter>
+            <id>AK17</id>
+            <name>Second Chance League Sled Dog Rescue</name>
+            <address1>P.O.Box 83474</address1>
+            <address2 />
+            <city>Fairbanks</city>
+            <state>AK</state>
+            <zip>99716</zip>
+            <country>US</country>
+            <latitude>64.798</latitude>
+            <longitude>-147.5356</longitude>
+            <phone>(907) 451-0078 </phone>
+            <fax />
+            <email>info@secondchanceleague.org</email>
+        </shelter>
+    </shelters>
+</petfinder>

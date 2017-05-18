@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -39,7 +40,7 @@ public class CloudPetDataSource implements PetDataSource {
                 //.doOnNext(pet -> petCache.put(pet))
                 .flatMap(Observable::just)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(Schedulers.immediate());
     }
 
     @Override

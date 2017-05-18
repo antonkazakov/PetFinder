@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<petfinder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://api.petfinder.com/schemas/0.9/petfinder.xsd">
+    <header>
+        <version>0.1</version>
+        <timestamp>2017-05-18T11:26:02Z</timestamp>
+        <status>
+            <code>100</code>
+            <message />
+        </status>
+    </header>
+    <shelter>
+        <id>NT01</id>
+        <name>NWT SPCA</name>
+        <address1>Box 2278</address1>
+        <address2 />
+        <city>Yellowknife</city>
+        <state>NT</state>
+        <zip>X1A 2W5</zip>
+        <country>CA</country>
+        <latitude>62.452</latitude>
+        <longitude>-114.378</longitude>
+        <phone>867-444-8444  </phone>
+        <fax />
+        <email>nwtspcayk@gmail.com</email>
+    </shelter>
+</petfinder>
