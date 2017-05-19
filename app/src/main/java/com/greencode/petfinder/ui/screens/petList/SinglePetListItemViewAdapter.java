@@ -41,6 +41,12 @@ public class SinglePetListItemViewAdapter implements DelegateAdapter<SinglePetLi
         SinglePetListItemViewHolder singlePetListItemViewHolder = (SinglePetListItemViewHolder) holder;
         singlePetListItemViewHolder.tvName.setText(testFuckItem.getName());
         singlePetListItemViewHolder.tvDescription.setText(testFuckItem.getDescription());
+        singlePetListItemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                singlePetClickListener.onPetClicked(testFuckItem.getId(), testFuckItem.getPhotoUrl());
+            }
+        });
         Glide.with(holder.itemView.getContext())
                 .load(testFuckItem.getPhotoUrl())
                 .centerCrop()

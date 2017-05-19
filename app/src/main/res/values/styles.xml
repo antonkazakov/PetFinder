@@ -25,6 +25,13 @@
         <item name="actionMenuTextColor">@color/greenPrimary</item>
     </style>
 
+    <style name="FullScreenActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="TextAppearance">
         <item name="actionMenuTextColor">@color/colorPrimary</item>
         <item name="android:textColor">@color/colorPrimary</item>

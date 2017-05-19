@@ -7,7 +7,9 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +27,9 @@ import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
+import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
 import com.greencode.petfinder.ui.screens.petSingle.viewitems.BigTextViewItem;
+import com.greencode.petfinder.ui.viewmodels.baseModels.DoubleTextLineViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 import com.greencode.petfinder.ui.screens.shelterSingle.SimpleShelterItemView;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -41,7 +45,7 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class SinglePetFragment extends Fragment implements SinglePetContract.View, SinglePetViewPagerAdapter.SinglePetPhotoClickListener {
+public class SinglePetFragment extends Fragment implements SinglePetContract.View{
 
     private SinglePetViewPagerAdapter photoViewPagerAdapter;
 
@@ -79,13 +83,20 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         View view = inflater.inflate(R.layout.fragment_single_pet, container, false);
         ButterKnife.bind(this, view);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_action_arrow_back_white));
+
         collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
         photos.add(new Photo("1", getArguments().getString("url")));
-        photoViewPagerAdapter = new SinglePetViewPagerAdapter(getActivity(), photos);
+        SinglePetViewPagerAdapter.SinglePetPhotoClickListener singlePetPhotoClickListener = position -> goToPhotoActivity(position);
+
+        photoViewPagerAdapter = new SinglePetViewPagerAdapter(getActivity(), singlePetPhotoClickListener, photos);
         viewPager.setAdapter(photoViewPagerAdapter);
         photoViewPagerAdapter.notifyDataSetChanged();
         mIndicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
@@ -142,9 +153,9 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         photos.addAll(pet.getPhotos());
         photoViewPagerAdapter.notifyDataSetChanged();
         List<ViewItem> viewItems = new ArrayList<>();
-        viewItems.add(new SimpleShelterItemView("Name", pet.getName()));
-        viewItems.add(new SimpleShelterItemView("Age", pet.getAge()));
-        viewItems.add(new SimpleShelterItemView("Sex", pet.getSex()));
+        viewItems.add(new DoubleTextLineViewItem("Name", pet.getName()));
+        viewItems.add(new DoubleTextLineViewItem("Age", pet.getAge()));
+        viewItems.add(new DoubleTextLineViewItem("Sex", pet.getSex()));
         viewItems.add(new SectionViewItem("About", R.color.colorPrimary));
         viewItems.add(new BigTextViewItem(pet.getDescription()));
         viewItems.add(new SectionViewItem("Neighbors", R.color.colorPrimary));
@@ -174,14 +185,13 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
 
     private void goToPhotoActivity(int activePosition) {
         Intent intent = new Intent(getActivity(), PetPhotoViewActivity.class);
-        intent.putParcelableArrayListExtra("photos", new ArrayList<>(photos));
+        ArrayList<String> urls = new ArrayList<String>(){{
+            for (Photo p : photos){
+                add(p.getUrl());
+            }}};
+        intent.putStringArrayListExtra("photos", urls);
         intent.putExtra("position", activePosition);
         startActivity(intent);
-    }
-
-    @Override
-    public void onPhotoClicked(int position) {
-        goToPhotoActivity(position);
     }
 
 }

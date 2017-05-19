@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <com.greencode.petfinder.ui.widgets.TopCropImageView
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
+import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
 
 import java.util.List;
 
@@ -25,18 +26,17 @@ public class SinglePetViewPagerAdapter extends PagerAdapter {
     private SinglePetPhotoClickListener singlePetPhotoClickListener;
 
 
-    public SinglePetViewPagerAdapter(Context context, List<Photo> photos) {
+    public SinglePetViewPagerAdapter(Context context, SinglePetPhotoClickListener singlePetPhotoClickListener, List<Photo> photos) {
         this.context = context;
         this.photos = photos;
-        singlePetPhotoClickListener = (SinglePetPhotoClickListener) context;
+        this.singlePetPhotoClickListener = singlePetPhotoClickListener;
     }
-
-
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.singlepet_vp_item, container, false);
         ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        imageView.setOnClickListener(v -> singlePetPhotoClickListener.onPhotoClicked(position));
         Glide.with(context).load(photos.get(position).getUrl()).dontAnimate().into(imageView);
         container.addView(view);
         return view;

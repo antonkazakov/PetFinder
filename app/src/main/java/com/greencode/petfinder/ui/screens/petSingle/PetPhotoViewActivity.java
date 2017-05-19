@@ -1,18 +1,20 @@
 package com.greencode.petfinder.ui.screens.petSingle;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.greencode.petfinder.R;
-import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,16 +25,21 @@ public class PetPhotoViewActivity extends AppCompatActivity {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     PhotoPagerAdapter photoPagerAdapter;
 
-    List<Photo> photoList;
+    List<String> photoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_photo_view);
         ButterKnife.bind(this);
-        photoList = getIntent().getParcelableArrayListExtra("photos");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(this,R.drawable.ic_action_arrow_back_white));
+        photoList = getIntent().getStringArrayListExtra("photos");
         photoPagerAdapter = new PhotoPagerAdapter(photoList);
         viewPager.setAdapter(photoPagerAdapter);
         viewPager.setCurrentItem(getIntent().getIntExtra("position", 0), false);
@@ -41,11 +48,11 @@ public class PetPhotoViewActivity extends AppCompatActivity {
     /**
      * Adapter for pager on this activity
      */
-    private static class PhotoPagerAdapter extends PagerAdapter {
+    private class PhotoPagerAdapter extends PagerAdapter {
 
-        private List<Photo> photos;
+        private List<String> photos;
 
-        public PhotoPagerAdapter(List<Photo> photos) {
+        public PhotoPagerAdapter(List<String> photos) {
             this.photos = photos;
         }
 
@@ -56,11 +63,14 @@ public class PetPhotoViewActivity extends AppCompatActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            PhotoView photoView = new PhotoView(container.getContext());
+            View view = LayoutInflater.from(container.getContext()).inflate(R.layout.photo_item, container, false);
+            PhotoView photoView = (PhotoView) view.findViewById(R.id.photoView);
             Glide.with(container.getContext())
-                    .load(photos.get(position).getUrl())
+                    .load(photos.get(position))
+                    .dontAnimate()
                     .into(photoView);
-            return super.instantiateItem(container, position);
+            container.addView(view);
+            return view;
         }
 
         @Override
