@@ -28,6 +28,7 @@ import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
+import com.greencode.petfinder.ui.screens.petList.SinglePetListItemView;
 import com.greencode.petfinder.ui.screens.petSingle.viewitems.BigTextViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.DoubleTextLineViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
@@ -145,6 +146,7 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
 
     @Override
     public void showPet(Pet pet) {
+        //singlePetPresenter.loadShelterNeighbor(pet.getShelterId(),15);
         collapsingToolbar.setTitle(pet.getName());
         if (photos.size() > 1) {
             mIndicator.setVisibility(View.VISIBLE);
@@ -163,8 +165,10 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
     }
 
     @Override
-    public void showNeighbors(List<SimplePetListItemView> pets) {
-
+    public void showNeighbors(List<SinglePetListItemView> pets) {
+        List<ViewItem> viewItems = new ArrayList<>();
+        viewItems.addAll(pets);
+        singlePetGodAdapter.updateData(viewItems);
     }
 
 

@@ -19,6 +19,4 @@ public interface ShelterDataSource {
 
     Observable<Shelter> getShelter(Map<String, String> map);
 
-    Observable<List<Pet>> getPetsInShelter(Map<String, String> map);
-
 }

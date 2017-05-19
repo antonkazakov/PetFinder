@@ -42,7 +42,6 @@ public class PetMapperTest {
         expectedPet.setId("37432659");
         expectedPet.setName("Teddy");
         expectedPet.setSex("M");
-        //expectedPet.setDescription("Desc");
         expectedPet.setAnimal("Cat");
         expectedPet.setAge("Senior");
         expectedPet.setSize("M");

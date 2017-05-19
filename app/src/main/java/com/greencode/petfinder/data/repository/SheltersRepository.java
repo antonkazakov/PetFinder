@@ -28,17 +28,12 @@ public class SheltersRepository implements ShelterDataSource {
 
     @Override
     public Observable<List<Shelter>> getShelters(Map<String, String> map) {
-        return sheltersFactory.createCloudShelterDataSource().getShelters(map);
+        return sheltersFactory.createDependingOnCache().getShelters(map);
     }
 
     @Override
     public Observable<Shelter> getShelter(Map<String, String> map) {
         return sheltersFactory.createDependingOnCache().getShelter(map);
-    }
-
-    @Override
-    public Observable<List<Pet>> getPetsInShelter(Map<String, String> map) {
-        return sheltersFactory.createCloudShelterDataSource().getPetsInShelter(map);
     }
 
     public Observable<List<Shelter>> getSheltersFromCloud(Map<String, String> map){

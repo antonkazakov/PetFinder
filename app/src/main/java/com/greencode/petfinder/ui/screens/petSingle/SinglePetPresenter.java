@@ -54,6 +54,8 @@ public class SinglePetPresenter implements SinglePetContract.Presenter {
     @Override
     public void loadShelterNeighbor(String shelterId, int limit) {
         Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("id", shelterId);
+        paramMap.put("count", String.valueOf(limit));
         repository.getSheltersPet(paramMap)
                 .flatMap(pets -> Observable.just(singlePetMapper.transformLuckyPetsdf(pets)))
                 .doOnTerminate(new Action0() {

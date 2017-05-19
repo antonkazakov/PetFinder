@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -36,16 +37,27 @@ public class PetSourcePetFactoryTest {
 
     @Test
     public void createLocalDataSourceTest() throws Exception {
-        when(petCache.isExpired()).thenReturn(false);
+        when(petCache.isExpired())
+                .thenReturn(false);
         PetDataSource petDataSource = petSourcePetFactory.createDependingOnCache();
         assertThat(petDataSource, instanceOf(LocalPetDataSource.class));
     }
 
     @Test
     public void createCloudDataSourceTest() throws Exception {
-        when(petCache.isExpired()).thenReturn(true);
+        when(petCache.isExpired())
+                .thenReturn(true);
         PetDataSource petDataSource = petSourcePetFactory.createDependingOnCache();
         assertThat(petDataSource, instanceOf(CloudPetDataSource.class));
+    }
+
+    @Test
+    public void createDependingOnCache() throws Exception {
+        when(petCache.isExpired())
+                .thenReturn(true)
+                .thenReturn(false);
+        assertThat(petSourcePetFactory.createDependingOnCache(), instanceOf(CloudPetDataSource.class));
+        assertThat(petSourcePetFactory.createDependingOnCache(), instanceOf(LocalPetDataSource.class));
     }
 
 }

@@ -52,12 +52,12 @@ public class SinglePetGodAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return viewItems.size();
     }
 
-    void updateData(List<ViewItem> viewItems1){
+    synchronized void updateData(List<ViewItem> viewItems1){
         viewItems.addAll(viewItems1);
         notifyDataSetChanged();
     }
 
-    void updateData(ViewItem viewItem){
+    synchronized void updateData(ViewItem viewItem){
         viewItems.add(viewItem);
         notifyDataSetChanged();
     }

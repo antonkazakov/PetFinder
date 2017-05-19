@@ -27,12 +27,12 @@ public class PetRepository implements PetDataSource {
 
     @Override
     public Observable<Pet> getPet(String id) {
-        return petSourcePetFactory.createCloudDataSource().getPet(id);
+        return petSourcePetFactory.createDependingOnCache().getPet(id);
     }
 
     @Override
     public Observable<List<Pet>> findPet(Map<String, String> requestMap) {
-        return petSourcePetFactory.createDependingOnCache().findPet(requestMap);
+        return petSourcePetFactory.createCloudDataSource().findPet(requestMap);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PetRepository implements PetDataSource {
 
     @Override
     public Observable<List<Pet>> getSheltersPet(Map<String, String> requestMap) {
-        return null;
+        return petSourcePetFactory.createDependingOnCache().getSheltersPet(requestMap);
     }
 
 }

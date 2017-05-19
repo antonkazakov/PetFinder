@@ -8,8 +8,11 @@ import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.DelegateAdapter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
+import com.greencode.petfinder.ui.screens.petList.SinglePetClickListenerExtended;
 import com.greencode.petfinder.ui.screens.petList.SinglePetListItemView;
 import com.greencode.petfinder.ui.screens.petList.SinglePetListItemViewAdapter;
+import com.greencode.petfinder.ui.viewmodels.baseModels.FooterAdapter;
+import com.greencode.petfinder.ui.viewmodels.baseModels.FooterViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionAdapter;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 
@@ -29,13 +32,12 @@ public class ShelterPageGodAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private List<ViewItem> viewItems = new ArrayList<>();
 
-    SinglePetClickListener singlePetClickListener;
-
-    public ShelterPageGodAdapter(SinglePetClickListener singlePetClickListener) {
+    public ShelterPageGodAdapter(SinglePetClickListenerExtended singlePetClickListener) {
         adapters.put(R.layout.shelter_page_header_item, new ShelterHeaderDelegateAdapter());
         adapters.put(R.layout.shelter_page_simple_item, new ShelterSimpleAdapter());
-        adapters.put(R.layout.pet_list_single_item, new SinglePetListItemViewAdapter(null));
+        adapters.put(R.layout.pet_list_single_item, new SinglePetListItemViewAdapter(singlePetClickListener));
         adapters.put(R.layout.section_item, new SectionAdapter());
+        adapters.put(R.layout.footer_itemview, new FooterAdapter());
     }
 
     @Override
@@ -66,6 +68,7 @@ public class ShelterPageGodAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void updateData1(List<SinglePetListItemView> viewItems12){
         viewItems.add(new SectionViewItem("Our Pets", R.color.greenPrimary));
         viewItems.addAll(viewItems12);
+        viewItems.add(new FooterViewItem("Loaded" + viewItems12.size() + "items"));
         notifyDataSetChanged();
     }
 

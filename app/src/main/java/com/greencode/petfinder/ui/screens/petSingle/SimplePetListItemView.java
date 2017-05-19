@@ -1,11 +1,13 @@
 package com.greencode.petfinder.ui.screens.petSingle;
 
+import com.greencode.petfinder.ui.base.ViewItem;
+
 /**
  * @author Anton Kazakov
  * @date 26.04.17.
  */
 
-public class SimplePetListItemView {
+public class SimplePetListItemView implements ViewItem {
 
     private String id;
 
@@ -25,5 +27,10 @@ public class SimplePetListItemView {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    @Override
+    public int viewType() {
+        return 0;
     }
 }

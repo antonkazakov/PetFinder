@@ -29,7 +29,6 @@ import static org.junit.Assert.*;
  */
 public class ApiServiceTest {
 
-    @Mock
     private ApiService apiService;
 
     private MockWebServer mockWebServer;

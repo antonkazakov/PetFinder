@@ -55,14 +55,7 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("key", "77cffd89b0d4cca16a350862872c2261");
-        sheltersRepository.getPetsInShelter(map)
-                .flatMap(pets -> Observable.just(petListMapper.transformSinglePet(pets)))
-                .subscribe(testFuckItems -> {
-                    Log.i("sfsdf", "getSheltersPet: " + testFuckItems.size());
-                    view.onPetsFromShelterLoaded(testFuckItems);
-                }, throwable -> {
-                    Log.e("TEST", "call: ", throwable);
-                });
+        map.put("count" , "20");
     }
 
     @Override

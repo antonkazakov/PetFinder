@@ -35,10 +35,4 @@ public class LocalShelterDataSource implements ShelterDataSource {
         return shelterCache.get(map.get("id"));
     }
 
-    @Override
-    public Observable<List<Pet>> getPetsInShelter(Map<String, String> map) {
-        return null;
-    }
-
-
 }

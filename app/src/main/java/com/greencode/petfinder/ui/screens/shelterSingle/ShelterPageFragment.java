@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,8 +22,11 @@ import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
+import com.greencode.petfinder.ui.screens.petList.SinglePetClickListenerExtended;
 import com.greencode.petfinder.ui.screens.petList.SinglePetListItemView;
 import com.greencode.petfinder.ui.screens.petSingle.SinglePetActivity;
+import com.greencode.petfinder.ui.viewmodels.baseModels.DoubleTextLineViewItem;
+import com.greencode.petfinder.ui.viewmodels.baseModels.FooterViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 
 import java.util.ArrayList;
@@ -34,7 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ShelterPageFragment extends Fragment implements ShelterPageContract.View, SinglePetClickListener{
+public class ShelterPageFragment extends Fragment implements ShelterPageContract.View, SinglePetClickListener, SinglePetClickListenerExtended{
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -76,7 +80,18 @@ public class ShelterPageFragment extends Fragment implements ShelterPageContract
         View view = inflater.inflate(R.layout.fragment_shelter_pager, container, false);
         ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position<6){
+                    return 2;
+                }else {
+                    return 1;
+                }
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(shelterPageGodAdapter);
         return view;
     }
@@ -96,11 +111,12 @@ public class ShelterPageFragment extends Fragment implements ShelterPageContract
                 .toString();
         viewItems.add(new ShelterPageHeaderViewItem(test2));
         viewItems.add(new SectionViewItem("Contacts", R.color.greenPrimary));
-        viewItems.add(new SimpleShelterItemView("Name", bundle.getString("name", "N/A")));
-        viewItems.add(new SimpleShelterItemView("Address", bundle.getString("address", "N/A")));
-        viewItems.add(new SimpleShelterItemView("Phone", bundle.getString("phone", "N/A")));
-        viewItems.add(new SimpleShelterItemView("Email", bundle.getString("email", "N/A")));
+        viewItems.add(new DoubleTextLineViewItem("Name", bundle.getString("name", "N/A")));
+        viewItems.add(new DoubleTextLineViewItem("Address", bundle.getString("address", "N/A")));
+        viewItems.add(new DoubleTextLineViewItem("Phone", bundle.getString("phone", "N/A")));
+        viewItems.add(new DoubleTextLineViewItem("Email", bundle.getString("email", "N/A")));
         shelterPageGodAdapter.updateData(viewItems);
+
         shelterPresenter.getSheltersPet(getArguments().getString("id"));
     }
 
@@ -139,5 +155,12 @@ public class ShelterPageFragment extends Fragment implements ShelterPageContract
     @Override
     public void onPetClicked(String petId) {
         startActivity(new Intent(getActivity(), SinglePetActivity.class).putExtra("id", petId));
+    }
+
+    @Override
+    public void onPetClicked(String petId, String url) {
+        startActivity(new Intent(getActivity(), SinglePetActivity.class)
+                .putExtra("url", url)
+                .putExtra("id", petId));
     }
 }

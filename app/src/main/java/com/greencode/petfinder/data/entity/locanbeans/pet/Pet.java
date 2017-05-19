@@ -31,8 +31,7 @@ public class Pet extends RealmObject{
 
     private Contact contact;
 
-    @Index
-    private String TABLE;
+    private String shelterId;
 
     public Pet() {
     }
@@ -109,13 +108,12 @@ public class Pet extends RealmObject{
         this.contact = contact;
     }
 
-
-    public String getTABLE() {
-        return TABLE;
+    public String getShelterId() {
+        return shelterId;
     }
 
-    public void setTABLE(String TABLE) {
-        this.TABLE = TABLE;
+    public void setShelterId(String shelterId) {
+        this.shelterId = shelterId;
     }
 
     @Override

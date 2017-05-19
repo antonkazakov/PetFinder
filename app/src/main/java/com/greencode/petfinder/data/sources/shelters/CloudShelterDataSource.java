@@ -96,15 +96,5 @@ public class CloudShelterDataSource implements ShelterDataSource {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    @Override
-    public Observable<List<Pet>> getPetsInShelter(Map<String, String> map) {
-        return apiService.getSheltersPet(map)
-                .flatMap(petFindResponse -> {
-                    List<Pet> shelters = petMapper.transform1(petFindResponse.getPets());
-                    return Observable.just(shelters);
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
 
 }
