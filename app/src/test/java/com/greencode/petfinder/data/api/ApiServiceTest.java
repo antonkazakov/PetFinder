@@ -10,10 +10,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.simpleframework.xml.core.Persister;
 
 import java.util.HashMap;
+
+import javax.inject.Inject;
 
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;
@@ -21,15 +22,14 @@ import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import rx.observers.TestSubscriber;
 
-import static org.junit.Assert.*;
-
 /**
  * @author Anton Kazakov
  * @date 17.05.17.
  */
 public class ApiServiceTest {
 
-    private ApiService apiService;
+    @Inject
+    ApiService apiService;
 
     private MockWebServer mockWebServer;
     private Persister persister;
@@ -43,6 +43,9 @@ public class ApiServiceTest {
 
     @Before
     public void setUp() throws Exception {
+
+        //TestComponent testComponent = Dagger
+       // Dagger
         persister = new Persister();
         simpleXMLParser = new SimpleXMLParser(persister);
 

@@ -23,6 +23,7 @@ import rx.observers.TestSubscriber;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.*;
 
 /**
  * @author Anton Kazakov
@@ -46,7 +47,7 @@ public class PetRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
         petRepository = new PetRepository(petSourcePetFactory);
 
         when(petSourcePetFactory.createCloudDataSource()).thenReturn(cloudPetDataSource);

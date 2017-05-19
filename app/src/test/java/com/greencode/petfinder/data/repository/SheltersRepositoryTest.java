@@ -25,6 +25,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.MockitoAnnotations.*;
 
 /**
  * @author Anton Kazakov
@@ -48,7 +49,7 @@ public class SheltersRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
         sheltersRepository = new SheltersRepository(sheltersFactory);
         when(sheltersFactory.createCloudShelterDataSource()).thenReturn(cloudShelterDataSource);
         when(sheltersFactory.createDependingOnCache()).thenReturn(shelterDataSource);

@@ -19,6 +19,8 @@ import rx.Observable;
 import rx.observers.TestSubscriber;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.*;
 
 /**
  * @author Anton Kazakov
@@ -33,7 +35,7 @@ public class LocalShelterDataSourceTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
         localShelterDataSource = new LocalShelterDataSource(shelterCache);
     }
 
@@ -41,13 +43,13 @@ public class LocalShelterDataSourceTest {
     public void getShelters() throws Exception {
         List<Shelter> shelters = fakeShelters();
         //given
-        Mockito.when(shelterCache.getAll()).thenReturn(Observable.just(shelters));
+        when(shelterCache.getAll()).thenReturn(Observable.just(shelters));
         TestSubscriber<List<Shelter>> shelterTestSubscriber = new TestSubscriber<>();
         localShelterDataSource.getShelters(new HashMap<>()).subscribe(shelterTestSubscriber);
 
         shelterTestSubscriber.assertCompleted();
         shelterTestSubscriber.assertNoErrors();
-        Assert.assertEquals(shelters, shelterTestSubscriber.getOnNextEvents().get(0));
+        assertEquals(shelters, shelterTestSubscriber.getOnNextEvents().get(0));
 
     }
 
@@ -55,22 +57,17 @@ public class LocalShelterDataSourceTest {
     public void getShelter() throws Exception {
         Shelter shelter = new Shelter();
         //given
-        Mockito.when(shelterCache.get(Mockito.anyString())).thenReturn(Observable.just(shelter));
+        when(shelterCache.get(anyString())).thenReturn(Observable.just(shelter));
         TestSubscriber<Shelter> shelterTestSubscriber = new TestSubscriber<>();
         localShelterDataSource.getShelter(new HashMap<>()).subscribe(shelterTestSubscriber);
 
         shelterTestSubscriber.assertCompleted();
         shelterTestSubscriber.assertNoErrors();
-        Assert.assertEquals(shelter, shelterTestSubscriber.getOnNextEvents().get(0));
+        assertEquals(shelter, shelterTestSubscriber.getOnNextEvents().get(0));
     }
 
-    @Ignore
-    @Test
-    public void getPetsInShelter() throws Exception {
 
-    }
-
-    public List<Shelter> fakeShelters(){
+    private List<Shelter> fakeShelters(){
         return new ArrayList<Shelter>() {{
                 add(new Shelter());
                 add(new Shelter());

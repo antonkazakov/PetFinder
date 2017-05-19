@@ -17,6 +17,8 @@ import rx.Observable;
 import rx.observers.TestSubscriber;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.*;
 
 /**
  * @author Anton Kazakov
@@ -40,17 +42,17 @@ public class LocationRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
         locationRepository = new LocationRepository(locationFactory);
-        Mockito.when(locationFactory.createDependingOnCache()).thenReturn(locationSource);
-        Mockito.when(locationFactory.createLocalDataSource()).thenReturn(locationLocalDataSource);
-        Mockito.when(locationFactory.createCloudDataSource()).thenReturn(realLocationDataSource);
+        when(locationFactory.createDependingOnCache()).thenReturn(locationSource);
+        when(locationFactory.createLocalDataSource()).thenReturn(locationLocalDataSource);
+        when(locationFactory.createCloudDataSource()).thenReturn(realLocationDataSource);
     }
 
     @Test
     public void getMyLocation() throws Exception {
         SimpleLocation simpleLocation = new SimpleLocation();
-        Mockito.when(locationFactory.createDependingOnCache().getMyLocation()).thenReturn(Observable.just(simpleLocation));
+        when(locationFactory.createDependingOnCache().getMyLocation()).thenReturn(Observable.just(simpleLocation));
 
         TestSubscriber<SimpleLocation> simpleLocationTestSubscriber = new TestSubscriber<>();
         locationRepository.getMyLocation().subscribe(simpleLocationTestSubscriber);
@@ -58,14 +60,14 @@ public class LocationRepositoryTest {
 
         simpleLocationTestSubscriber.assertCompleted();
         simpleLocationTestSubscriber.assertNoErrors();
-        Mockito.verify(locationFactory.createDependingOnCache());
-        Assert.assertEquals(simpleLocation, simpleLocationTestSubscriber.getOnNextEvents().get(0));
+        verify(locationFactory.createDependingOnCache());
+        assertEquals(simpleLocation, simpleLocationTestSubscriber.getOnNextEvents().get(0));
     }
 
     @Test
     public void getMyRealLocation() throws Exception {
         SimpleLocation simpleLocation = new SimpleLocation();
-        Mockito.when(locationFactory.createCloudDataSource().getMyLocation()).thenReturn(Observable.just(simpleLocation));
+        when(locationFactory.createCloudDataSource().getMyLocation()).thenReturn(Observable.just(simpleLocation));
 
         TestSubscriber<SimpleLocation> simpleLocationTestSubscriber = new TestSubscriber<>();
         locationRepository.getMyRealLocation().subscribe(simpleLocationTestSubscriber);
@@ -73,8 +75,8 @@ public class LocationRepositoryTest {
 
         simpleLocationTestSubscriber.assertCompleted();
         simpleLocationTestSubscriber.assertNoErrors();
-        Mockito.verify(locationFactory.createCloudDataSource());
-        Assert.assertEquals(simpleLocation, simpleLocationTestSubscriber.getOnNextEvents().get(0));
+        verify(locationFactory.createCloudDataSource());
+        assertEquals(simpleLocation, simpleLocationTestSubscriber.getOnNextEvents().get(0));
     }
 
 }

@@ -30,11 +30,13 @@ public class ShelterRepositoryModule {
         return new SheltersRepository(sheltersFactory);
     }
 
-    @Provides
+
     @Singleton
+    @Provides
     public SheltersFactory provideSheltersFactory(ApiService apiService,
                                                   Cache<Shelter> shelterCache,
-                                                  ShelterMapper shelterMapper, PetMapper petMapper){
+                                                  ShelterMapper shelterMapper,
+                                                  PetMapper petMapper){
         return new SheltersFactory(apiService, shelterCache, shelterMapper, petMapper);
     }
 
@@ -49,6 +51,5 @@ public class ShelterRepositoryModule {
     public Cache<Shelter> provideShelterCache(){
         return new ShelterCache();
     }
-
 
 }

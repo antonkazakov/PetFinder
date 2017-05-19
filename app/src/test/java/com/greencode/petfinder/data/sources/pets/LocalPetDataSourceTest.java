@@ -19,6 +19,8 @@ import rx.Observable;
 import rx.observers.TestSubscriber;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.*;
 
 /**
  * @author Anton Kazakov
@@ -33,7 +35,7 @@ public class LocalPetDataSourceTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
         localPetDataSource = new LocalPetDataSource(petCache);
     }
 
@@ -41,22 +43,22 @@ public class LocalPetDataSourceTest {
     public void getPet() throws Exception {
         Pet pet = new Pet();
         //given
-        Mockito.when(petCache.get(Mockito.anyString())).thenReturn(Observable.just(pet));
+        when(petCache.get(anyString())).thenReturn(Observable.just(pet));
 
         TestSubscriber<Pet> petTestSubscriber = new TestSubscriber<>();
-        localPetDataSource.getPet("").subscribe(petTestSubscriber);
+        localPetDataSource.getPet("dummy").subscribe(petTestSubscriber);
 
         //then
         petTestSubscriber.assertCompleted();
         petTestSubscriber.assertNoErrors();
-        Assert.assertEquals(pet, petTestSubscriber.getOnNextEvents().get(0));
+        assertEquals(pet, petTestSubscriber.getOnNextEvents().get(0));
     }
 
     @Test
     public void findPet() throws Exception {
         List<Pet> pets = fakePets();
         //given
-        Mockito.when(petCache.getAll()).thenReturn(Observable.just(pets));
+        when(petCache.getAll()).thenReturn(Observable.just(pets));
 
         TestSubscriber<List<Pet>> petTestSubscriber = new TestSubscriber<>();
         localPetDataSource.findPet(new HashMap<>()).subscribe(petTestSubscriber);
@@ -64,7 +66,7 @@ public class LocalPetDataSourceTest {
         //then
         petTestSubscriber.assertNoErrors();
         petTestSubscriber.assertCompleted();
-        Assert.assertEquals(pets.get(0),petTestSubscriber.getOnNextEvents().get(0).get(0));
+        assertEquals(pets.get(0),petTestSubscriber.getOnNextEvents().get(0).get(0));
     }
 
     @Test
@@ -77,7 +79,7 @@ public class LocalPetDataSourceTest {
     public void getSheltersPet() throws Exception {
         List<Pet> pets = fakePets();
         //given
-        Mockito.when(petCache.getAll()).thenReturn(Observable.just(pets));
+        when(petCache.getAll()).thenReturn(Observable.just(pets));
 
         TestSubscriber<List<Pet>> petTestSubscriber = new TestSubscriber<>();
         localPetDataSource.getSheltersPet(new HashMap<>()).subscribe(petTestSubscriber);
@@ -85,7 +87,7 @@ public class LocalPetDataSourceTest {
         //then
         petTestSubscriber.assertNoErrors();
         petTestSubscriber.assertCompleted();
-        Assert.assertEquals(pets.get(0),petTestSubscriber.getOnNextEvents().get(0).get(0));
+        assertEquals(pets.get(0),petTestSubscriber.getOnNextEvents().get(0).get(0));
     }
 
     public List<Pet> fakePets(){

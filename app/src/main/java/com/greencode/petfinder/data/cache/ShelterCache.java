@@ -7,6 +7,8 @@ import com.greencode.petfinder.data.entity.locanbeans.simplelocation.SimpleLocat
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 import rx.Observable;
@@ -21,6 +23,10 @@ import rx.functions.Func1;
 public class ShelterCache implements Cache<Shelter> {
 
     private static final long CACHE_EXPIRATION_TIME = 60*60*1000;
+
+    @Inject
+    public ShelterCache() {
+    }
 
     @Override
     public void clearCache() {
