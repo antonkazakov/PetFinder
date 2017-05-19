@@ -3,7 +3,7 @@ package com.greencode.petfinder.ui.screens.shelterSingle;
 import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.BaseView;
-import com.greencode.petfinder.ui.screens.petList.TestFuckItem;
+import com.greencode.petfinder.ui.screens.petList.SinglePetListItemView;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public interface ShelterPageContract {
 
         void onShelterLoaded(Shelter shelter);
 
-        void onPetsFromShelterLoaded(List<TestFuckItem> petList);
+        void onPetsFromShelterLoaded(List<SinglePetListItemView> petList);
 
     }
 

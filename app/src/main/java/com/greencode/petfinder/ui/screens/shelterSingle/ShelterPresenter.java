@@ -57,7 +57,6 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
         map.put("key", "77cffd89b0d4cca16a350862872c2261");
         sheltersRepository.getPetsInShelter(map)
                 .flatMap(pets -> Observable.just(petListMapper.transformSinglePet(pets)))
-                .flatMap(listItemViews -> Observable.just(petListMapper.transformSinglePet1(listItemViews)))
                 .subscribe(testFuckItems -> {
                     Log.i("sfsdf", "getSheltersPet: " + testFuckItems.size());
                     view.onPetsFromShelterLoaded(testFuckItems);

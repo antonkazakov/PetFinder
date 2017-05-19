@@ -8,8 +8,8 @@ import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.DelegateAdapter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
+import com.greencode.petfinder.ui.screens.petList.SinglePetListItemView;
 import com.greencode.petfinder.ui.screens.petList.SinglePetListItemViewAdapter;
-import com.greencode.petfinder.ui.screens.petList.TestFuckItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionAdapter;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 
@@ -63,7 +63,7 @@ public class ShelterPageGodAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         notifyDataSetChanged();
     }
 
-    public void updateData1(List<TestFuckItem> viewItems12){
+    public void updateData1(List<SinglePetListItemView> viewItems12){
         viewItems.add(new SectionViewItem("Our Pets", R.color.greenPrimary));
         viewItems.addAll(viewItems12);
         notifyDataSetChanged();

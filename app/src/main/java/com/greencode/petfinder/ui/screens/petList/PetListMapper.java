@@ -46,18 +46,6 @@ public class PetListMapper {
         return singlePetListItemViews;
     }
 
-    public List<TestFuckItem> transformSinglePet1(List<SinglePetListItemView> listItemViews){
-        List<TestFuckItem> testFuckItems = new ArrayList<>();
-        int j = 0;
-        while (j<listItemViews.size() - 2){
-            TestFuckItem testFuckItem = new TestFuckItem();
-            testFuckItem.setSinglePetListItemView1(listItemViews.get(j));
-            testFuckItem.setSinglePetListItemView2(listItemViews.get(j+1));
-            testFuckItems.add(testFuckItem);
-            j = j+2;
-        }
-        return testFuckItems;
-    }
 
 
     public LuckyPetListItemView transformLuckyPet(Pet pet){

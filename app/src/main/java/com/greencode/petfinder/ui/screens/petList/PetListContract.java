@@ -15,9 +15,9 @@ public interface PetListContract {
 
     interface View extends BaseView{
 
-        void petsLoaded(List<TestFuckItem> petListItemViewList);
+        void petsLoaded(List<SinglePetListItemView> petListItemViewList);
 
-        void onPetsRefreshed(List<TestFuckItem> petListItemViewList);
+        void onPetsRefreshed(List<SinglePetListItemView> petListItemViewList);
 
         void onLuckyPetAdded(LuckyPetListItemView luckyPetListItemView);
 

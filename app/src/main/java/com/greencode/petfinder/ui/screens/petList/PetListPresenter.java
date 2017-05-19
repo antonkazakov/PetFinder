@@ -90,7 +90,6 @@ public class PetListPresenter implements PetListContract.Presenter {
                 })
 
                 .flatMap(pets -> Observable.just(petListMapper.transformSinglePet(pets)))
-                .flatMap(listItemViews -> Observable.just(petListMapper.transformSinglePet1(listItemViews)))
                 .flatMap(testFuckItems -> {
                     List<ViewItem> viewItems = new ArrayList<>();
                     viewItems.addAll(testFuckItems);
@@ -119,7 +118,6 @@ public class PetListPresenter implements PetListContract.Presenter {
                 })
 
                 .flatMap(pets -> Observable.just(petListMapper.transformSinglePet(pets)))
-                .flatMap(listItemViews -> Observable.just(petListMapper.transformSinglePet1(listItemViews)))
                 .flatMap(testFuckItems -> {
                     List<ViewItem> viewItems = new ArrayList<>();
                     viewItems.addAll(testFuckItems);

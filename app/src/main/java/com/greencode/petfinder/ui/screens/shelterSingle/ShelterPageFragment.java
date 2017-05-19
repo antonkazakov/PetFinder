@@ -21,7 +21,7 @@ import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
-import com.greencode.petfinder.ui.screens.petList.TestFuckItem;
+import com.greencode.petfinder.ui.screens.petList.SinglePetListItemView;
 import com.greencode.petfinder.ui.screens.petSingle.SinglePetActivity;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
 
@@ -117,7 +117,7 @@ public class ShelterPageFragment extends Fragment implements ShelterPageContract
     }
 
     @Override
-    public void onPetsFromShelterLoaded(List<TestFuckItem> petList) {
+    public void onPetsFromShelterLoaded(List<SinglePetListItemView> petList) {
         shelterPageGodAdapter.updateData1(petList);
     }
 

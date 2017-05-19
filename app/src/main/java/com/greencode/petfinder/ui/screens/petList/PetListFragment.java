@@ -124,13 +124,13 @@ public class PetListFragment extends Fragment implements SinglePetClickListenerE
     }
 
     @Override
-    public void petsLoaded(List<TestFuckItem> petListItemViewList) {
+    public void petsLoaded(List<SinglePetListItemView> petListItemViewList) {
         viewItems.addAll(petListItemViewList);
         petListGodAdapter.updateData(viewItems);
     }
 
     @Override
-    public void onPetsRefreshed(List<TestFuckItem> petListItemViewList) {
+    public void onPetsRefreshed(List<SinglePetListItemView> petListItemViewList) {
         viewItems.clear();
         viewItems.addAll(petListItemViewList);
         petListGodAdapter.updateData(viewItems);

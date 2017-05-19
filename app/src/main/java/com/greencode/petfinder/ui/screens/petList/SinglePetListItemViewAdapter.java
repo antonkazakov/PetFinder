@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
  * @date 20.04.17.
  */
 
-public class SinglePetListItemViewAdapter implements DelegateAdapter<TestFuckItem> {
+public class SinglePetListItemViewAdapter implements DelegateAdapter<SinglePetListItemView> {
 
     private SinglePetClickListenerExtended singlePetClickListener;
 
@@ -37,24 +37,15 @@ public class SinglePetListItemViewAdapter implements DelegateAdapter<TestFuckIte
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, TestFuckItem testFuckItem) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, SinglePetListItemView testFuckItem) {
         SinglePetListItemViewHolder singlePetListItemViewHolder = (SinglePetListItemViewHolder) holder;
-        singlePetListItemViewHolder.tvName.setText(testFuckItem.getSinglePetListItemView1().getName());
-        singlePetListItemViewHolder.tvDescription.setText(testFuckItem.getSinglePetListItemView1().getDescription());
-        singlePetListItemViewHolder.tvName2.setText(testFuckItem.getSinglePetListItemView2().getName());
-        singlePetListItemViewHolder.tvDescription2.setText(testFuckItem.getSinglePetListItemView2().getDescription());
-        singlePetListItemViewHolder.left.setOnClickListener(v -> singlePetClickListener.onPetClicked(testFuckItem.getSinglePetListItemView1().getId(),testFuckItem.getSinglePetListItemView1().getPhotoUrl()));
-        singlePetListItemViewHolder.right.setOnClickListener(v -> singlePetClickListener.onPetClicked(testFuckItem.getSinglePetListItemView2().getId(),testFuckItem.getSinglePetListItemView2().getPhotoUrl()));
+        singlePetListItemViewHolder.tvName.setText(testFuckItem.getName());
+        singlePetListItemViewHolder.tvDescription.setText(testFuckItem.getDescription());
         Glide.with(holder.itemView.getContext())
-                .load(testFuckItem.getSinglePetListItemView1().getPhotoUrl())
+                .load(testFuckItem.getPhotoUrl())
                 .centerCrop()
                 .dontAnimate()
                 .into(singlePetListItemViewHolder.imgAvatar);
-
-        Glide.with(holder.itemView.getContext())
-                .load(testFuckItem.getSinglePetListItemView2().getPhotoUrl())
-                .centerCrop()
-                .into(singlePetListItemViewHolder.imgAvatar2);
     }
 
 
@@ -67,26 +58,14 @@ public class SinglePetListItemViewAdapter implements DelegateAdapter<TestFuckIte
         @BindView(R.id.layoutLeft)
         CardView left;
 
-        @BindView(R.id.layoutRight)
-        CardView right;
-
         @BindView(R.id.tvName)
         TextView tvName;
-
-        @BindView(R.id.tvName2)
-        TextView tvName2;
 
         @BindView(R.id.imgAvatar)
         ImageView imgAvatar;
 
-        @BindView(R.id.imgAvatar2)
-        ImageView imgAvatar2;
-
         @BindView(R.id.tvDescription)
         TextView tvDescription;
-
-        @BindView(R.id.tvDescription2)
-        TextView tvDescription2;
 
         public SinglePetListItemViewHolder(View itemView) {
             super(itemView);
