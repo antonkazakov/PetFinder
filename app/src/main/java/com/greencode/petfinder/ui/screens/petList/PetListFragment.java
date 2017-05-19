@@ -101,16 +101,19 @@ public class PetListFragment extends Fragment implements SinglePetClickListenerE
     }
 
     void initRecyclerView(){
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
-//        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                if (position == 2)
-//                    return 1;
-//                return 2;
-//            }
-//        });
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (position){
+                    case 2:
+                        return 2;
+                    default:
+                        return 1;
+                }
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setEmptyView(tvEmpty);
         recyclerView.setAdapter(petListGodAdapter);
     }

@@ -35,6 +35,7 @@ public class BitTextDelegateAdapter implements DelegateAdapter<BigTextViewItem> 
 
         });
 
+
     }
 
     public static class BigTextViewHolder extends RecyclerView.ViewHolder {

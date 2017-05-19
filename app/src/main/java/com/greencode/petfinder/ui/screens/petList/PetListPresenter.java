@@ -31,8 +31,7 @@ public class PetListPresenter implements PetListContract.Presenter {
     private PetListMapper petListMapper;
     private PetListContract.View view;
 
-    private static int offset;
-    private static String location;
+
     @Inject
     public PetListPresenter(PetRepository petRepository,
                             LocationRepository locationRepository,
@@ -85,11 +84,11 @@ public class PetListPresenter implements PetListContract.Presenter {
         locationRepository.getMyLocation()
                 .flatMap(simpleLocation -> {
                     Map<String, String> paramsMap = new HashMap<>();
-                    paramsMap.put("key", "77cffd89b0d4cca16a350862872c2261");
                     paramsMap.put("location", "AK");
                     paramsMap.put("count", "20");
                     return petRepository.findPet(paramsMap);
                 })
+
                 .flatMap(pets -> Observable.just(petListMapper.transformSinglePet(pets)))
                 .flatMap(listItemViews -> Observable.just(petListMapper.transformSinglePet1(listItemViews)))
                 .flatMap(testFuckItems -> {
@@ -114,7 +113,7 @@ public class PetListPresenter implements PetListContract.Presenter {
                 .flatMap(simpleLocation -> {
                     Map<String, String> paramsMap = new HashMap<>();
                     paramsMap.put("key", "77cffd89b0d4cca16a350862872c2261");
-                    paramsMap.put("location", "QC");
+                    paramsMap.put("location", "AK");
                     paramsMap.put("count", "20");
                     return petRepository.findPet(paramsMap);
                 })
@@ -125,12 +124,6 @@ public class PetListPresenter implements PetListContract.Presenter {
                     List<ViewItem> viewItems = new ArrayList<>();
                     viewItems.addAll(testFuckItems);
                     return Observable.just(viewItems);
-                })
-                .doOnCompleted(new Action0() {
-                    @Override
-                    public void call() {
-                        view.showLoading(false);
-                    }
                 })
                 .doOnTerminate(() -> view.showLoading(false))
                 .subscribe(viewItems -> {

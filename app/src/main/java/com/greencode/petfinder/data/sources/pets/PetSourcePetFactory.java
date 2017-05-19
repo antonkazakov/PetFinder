@@ -33,7 +33,7 @@ public class PetSourcePetFactory implements AbstractPetFactory<LocalPetDataSourc
         if (petCache.isExpired()){
             return createCloudDataSource();
         }else {
-            return createLocalDataSource();
+            return createCloudDataSource();
         }
     }
 

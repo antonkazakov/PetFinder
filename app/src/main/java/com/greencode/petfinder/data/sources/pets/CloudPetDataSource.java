@@ -45,6 +45,8 @@ public class CloudPetDataSource implements PetDataSource {
 
     @Override
     public Observable<List<Pet>> findPet(Map<String, String> requestMap) {
+        requestMap.remove("location");
+        requestMap.put("location", "AK");
         return apiService.findPet(requestMap)
                 .flatMap(petFindResponse -> {
                     List<Pet> pets = petMapper.transform1(petFindResponse.getPets());

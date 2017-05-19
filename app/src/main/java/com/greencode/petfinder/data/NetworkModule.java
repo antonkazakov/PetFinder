@@ -22,10 +22,9 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 /**
- *
  * This module provides all network dependencies like OkHttpClient with interceptors,
  * Retrofit, GSON and RetrofitConverters.
- *
+ * <p>
  * Any network dependency should go there.
  *
  * @author Anton Kazakov
@@ -49,8 +48,8 @@ public class NetworkModule {
     @Provides
     @Singleton
     public static Retrofit provideRetrofit(@NonNull SimpleXmlConverterFactory simpleXmlConverterFactory,
-                                            @NonNull RxJavaCallAdapterFactory rxAdapter,
-                                            @NonNull OkHttpClient client) {
+                                           @NonNull RxJavaCallAdapterFactory rxAdapter,
+                                           @NonNull OkHttpClient client) {
         return new Retrofit.Builder()
                 .baseUrl("http://api.petfinder.com")
                 .client(client)
@@ -77,7 +76,7 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public ApiService provideApiService(Retrofit retrofit){
+    public ApiService provideApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
 
@@ -85,20 +84,22 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public Interceptor provideKeyInterceptor(){
+    public Interceptor provideKeyInterceptor() {
         return chain -> {
             Request request = chain.request();
-            HttpUrl httpUrl = request.url().newBuilder().addQueryParameter("key", "").build();
+            HttpUrl httpUrl = request.url()
+                    .newBuilder()
+                    .addQueryParameter("key", "77cffd89b0d4cca16a350862872c2261")
+                    .build();
             request = request.newBuilder().url(httpUrl).build();
-            chain.proceed(request);
-            return null;
+            return chain.proceed(request);
         };
     }
 
     @NonNull
     @Provides
     @Singleton
-    public HttpLoggingInterceptor provideHttpLoggingInterceptor(){
+    public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
