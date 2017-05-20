@@ -1,6 +1,8 @@
 package com.greencode.petfinder.data.api;
 
+import com.greencode.petfinder.BuildConfig;
 import com.greencode.petfinder.SimpleXMLParser;
+import com.greencode.petfinder.TestApplication;
 import com.greencode.petfinder.data.entity.beans.pet.PetFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
 import com.greencode.petfinder.data.entity.beans.shelter.ShelterFindResponse;
@@ -10,6 +12,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 import org.simpleframework.xml.core.Persister;
 
 import java.util.HashMap;
@@ -26,6 +31,11 @@ import rx.observers.TestSubscriber;
  * @author Anton Kazakov
  * @date 17.05.17.
  */
+@RunWith(RobolectricTestRunner.class)
+@Config(application = TestApplication.class,
+        constants = BuildConfig.class,
+        sdk = 21)
+@Ignore
 public class ApiServiceTest {
 
     @Inject
@@ -46,6 +56,7 @@ public class ApiServiceTest {
 
         //TestComponent testComponent = Dagger
        // Dagger
+
         persister = new Persister();
         simpleXMLParser = new SimpleXMLParser(persister);
 

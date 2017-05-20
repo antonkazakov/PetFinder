@@ -5,6 +5,7 @@ import android.app.Application;
 import com.greencode.petfinder.data.AppComponent;
 import com.greencode.petfinder.data.AppModule;
 import com.greencode.petfinder.data.DaggerAppComponent;
+import com.greencode.petfinder.data.NetworkModule;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -32,6 +33,7 @@ public class PFApplication extends Application {
     public AppComponent buildComponent(){
         return DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .networkModule(new NetworkModule("http://api.petfinder.com"))
                 .build();
     }
 

@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.greencode.petfinder.data.api.ApiService;
 
-import java.io.IOException;
 import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
@@ -15,7 +14,6 @@ import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -31,19 +29,19 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
  * @date 29.03.17.
  */
 @Module
-public class NetworkModule {
+public class NetworkTestModule extends NetworkModule{
 
     private static String URL;
 
-    public NetworkModule(String URL) {
-        this.URL = URL;
+    public NetworkTestModule(String URL) {
+        super(URL);
     }
 
     @NonNull
     @Singleton
     @Provides
-    public  OkHttpClient provideOkHttp(@NonNull HttpLoggingInterceptor httpLoggingInterceptor,
-                                             @NonNull Interceptor keyInterceptor) {
+    public  OkHttpClient provideOkHttp1(@NonNull HttpLoggingInterceptor httpLoggingInterceptor,
+                                       @NonNull Interceptor keyInterceptor) {
         return new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .addNetworkInterceptor(keyInterceptor)
@@ -53,7 +51,7 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public static Retrofit provideRetrofit(@NonNull SimpleXmlConverterFactory simpleXmlConverterFactory,
+    public static Retrofit provideRetrofit1(@NonNull SimpleXmlConverterFactory simpleXmlConverterFactory,
                                            @NonNull RxJavaCallAdapterFactory rxAdapter,
                                            @NonNull OkHttpClient client) {
         return new Retrofit.Builder()
@@ -68,21 +66,21 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public SimpleXmlConverterFactory provideSimpleXmlConverterFactory() {
+    public SimpleXmlConverterFactory provideSimpleXmlConverterFactory1() {
         return SimpleXmlConverterFactory.create();
     }
 
     @NonNull
     @Provides
     @Singleton
-    public RxJavaCallAdapterFactory providesRxAdapter() {
+    public RxJavaCallAdapterFactory providesRxAdapter1() {
         return RxJavaCallAdapterFactory.create();
     }
 
     @NonNull
     @Provides
     @Singleton
-    public ApiService provideApiService(Retrofit retrofit) {
+    public ApiService provideApiService1(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
 
@@ -90,7 +88,7 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public Interceptor provideKeyInterceptor() {
+    public Interceptor provideKeyInterceptor1() {
         return chain -> {
             Request request = chain.request();
             HttpUrl httpUrl = request.url()
@@ -105,10 +103,11 @@ public class NetworkModule {
     @NonNull
     @Provides
     @Singleton
-    public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
+    public HttpLoggingInterceptor provideHttpLoggingInterceptor1() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }
+
 
 }
