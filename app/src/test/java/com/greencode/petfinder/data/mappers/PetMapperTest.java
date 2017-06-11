@@ -1,10 +1,10 @@
 package com.greencode.petfinder.data.mappers;
 
-import com.greencode.petfinder.SimpleXMLParser;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Contact;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
+import com.greencode.petfinder.utils.SimpleXMLParser;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +13,8 @@ import org.simpleframework.xml.core.Persister;
 
 import io.realm.RealmList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Anton Kazakov

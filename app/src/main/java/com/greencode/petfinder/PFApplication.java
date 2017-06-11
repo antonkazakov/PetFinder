@@ -30,7 +30,8 @@ public class PFApplication extends Application {
     }
 
     public AppComponent buildComponent(){
-        return DaggerAppComponent.builder()
+        return DaggerAppComponent
+                .builder()
                 .appModule(new AppModule(this))
                 .build();
     }

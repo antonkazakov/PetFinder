@@ -1,10 +1,6 @@
-package com.greencode.petfinder;
+package com.greencode.petfinder.utils;
 
 import android.support.annotation.NonNull;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * @author Anton Kazakov

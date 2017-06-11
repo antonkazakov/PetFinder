@@ -25,14 +25,14 @@ public class PetListModule {
     @FragmentScope
     @Provides
     public PetListPresenter provideShelterListPresenter(@NonNull PetListMapper petListMapper,
-                                                             @NonNull LocationRepository locationRepository,
-                                                             @NonNull PetRepository petRepository) {
+                                                        @NonNull LocationRepository locationRepository,
+                                                        @NonNull PetRepository petRepository) {
         return new PetListPresenter(petRepository, locationRepository, petListMapper, view);
     }
 
     @FragmentScope
     @Provides
-    public static PetListMapper provideShelterListMapper(){
+    public static PetListMapper provideShelterListMapper() {
         return new PetListMapper();
     }
 

@@ -1,10 +1,10 @@
 package com.greencode.petfinder.data.api;
 
-import com.greencode.petfinder.SimpleXMLParser;
 import com.greencode.petfinder.data.entity.beans.pet.PetFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
 import com.greencode.petfinder.data.entity.beans.shelter.ShelterFindResponse;
 import com.greencode.petfinder.data.entity.beans.shelter.ShelterGetResponse;
+import com.greencode.petfinder.utils.SimpleXMLParser;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,8 +13,6 @@ import org.junit.Test;
 import org.simpleframework.xml.core.Persister;
 
 import java.util.HashMap;
-
-import javax.inject.Inject;
 
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;
@@ -28,7 +26,6 @@ import rx.observers.TestSubscriber;
  */
 public class ApiServiceTest {
 
-    @Inject
     ApiService apiService;
 
     private MockWebServer mockWebServer;

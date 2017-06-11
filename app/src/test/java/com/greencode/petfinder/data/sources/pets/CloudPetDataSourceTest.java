@@ -1,24 +1,20 @@
 package com.greencode.petfinder.data.sources.pets;
 
-import com.greencode.petfinder.SimpleXMLParser;
 import com.greencode.petfinder.data.api.ApiService;
 import com.greencode.petfinder.data.cache.PetCache;
 import com.greencode.petfinder.data.entity.beans.pet.PetFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.mappers.PetMapper;
+import com.greencode.petfinder.utils.SimpleXMLParser;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Answers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.stubbing.answers.ThrowsExceptionClass;
-import org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNulls;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.simpleframework.xml.core.Persister;
 
@@ -27,6 +23,13 @@ import java.util.List;
 
 import rx.Observable;
 import rx.observers.TestSubscriber;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyMap;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Anton Kazakov
@@ -64,23 +67,23 @@ public class CloudPetDataSourceTest {
 
     @Test
     public void getPetSuccessTest() throws Exception {
-        Mockito.when(apiService.getPet(Mockito.anyString(), Mockito.anyString()))
+        when(apiService.getPet(anyString(), anyString()))
                 .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetGetResponse.class)));
-        Mockito.when(petMapper.transform(Mockito.any(PetGetResponse.class)))
+        when(petMapper.transform(any(PetGetResponse.class)))
                 .thenCallRealMethod();
         TestSubscriber<Pet> testSubscriber = new TestSubscriber<>();
         cloudPetDataSource.getPet("dummy").subscribe(testSubscriber);
         testSubscriber.awaitTerminalEvent();
-        Mockito.verify(petMapper,Mockito.times(1)).transform(Mockito.any(PetGetResponse.class));
+        verify(petMapper, times(1)).transform(any(PetGetResponse.class));
         testSubscriber.assertNoErrors();
         Assert.assertEquals("37432659", testSubscriber.getOnNextEvents().get(0).getId());
     }
 
     @Test
     public void findPetSuccessTest() throws Exception {
-        Mockito.when(apiService.findPet(Mockito.anyMap()))
+        when(apiService.findPet(anyMap()))
                 .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetFindResponse.class)));
-        Mockito.when(petMapper.transform(Mockito.any(PetGetResponse.class))).thenCallRealMethod();
+        when(petMapper.transform(any(PetGetResponse.class))).thenCallRealMethod();
         TestSubscriber<List<Pet>> testSubscriber = new TestSubscriber<>();
 
         cloudPetDataSource.findPet(new HashMap<>()).subscribe(testSubscriber);
@@ -94,7 +97,7 @@ public class CloudPetDataSourceTest {
 
     @Test
     public void getRandomPet() throws Exception {
-        Mockito.when(apiService.getRandomPet(Mockito.anyMap()))
+        when(apiService.getRandomPet(anyMap()))
                 .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetGetResponse.class)));
 
         TestSubscriber<PetGetResponse> testSubscriber = new TestSubscriber<>();
@@ -108,7 +111,7 @@ public class CloudPetDataSourceTest {
 
     @Test
     public void getSheltersPet() throws Exception {
-        Mockito.when(apiService.getSheltersPet(Mockito.anyMap()))
+        when(apiService.getSheltersPet(anyMap()))
                 .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetFindResponse.class)));
 
         TestSubscriber<PetFindResponse> testSubscriber = new TestSubscriber<>();
