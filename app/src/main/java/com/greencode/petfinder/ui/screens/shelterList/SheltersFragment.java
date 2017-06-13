@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +67,7 @@ public class SheltersFragment extends Fragment implements SheltersContract.View,
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         shelterListAdapter = new ShelterListAdapter(shelterListViewModels, this);
         initRecyclerView();
+        sheltersListPresenter.getNearShelters();
         return view;
     }
 

@@ -45,16 +45,16 @@ public class SheltersListPresenter implements SheltersContract.Presenter{
                 .flatMap(simpleLocation -> {
                     Map<String, String> map = new HashMap<>();
                     map.put("key", "77cffd89b0d4cca16a350862872c2261");
-                    map.put("location", simpleLocation.getAddress());
+                    map.put("location", "CA");
                     map.put("limit", "40");
                     return sheltersRepository.getShelters(map);
                 })
-                .zipWith(locationRepository.getMyLocation(), (shelters, simpleLocation) -> {
-                return shelterListMapper.transformAll(shelters);
-                })
+                .zipWith(locationRepository.getMyLocation(), (shelters, simpleLocation) -> shelterListMapper.transformAll(shelters))
                 .subscribe(shelterListViewModels -> {
+                    Log.d("FUCK", shelterListViewModels.toString());
                     view.onSheltersRefreshed(shelterListViewModels);
                 }, throwable -> {
+                    Log.e("FUCK",throwable.getLocalizedMessage(),throwable);
                     view.showError(throwable.getLocalizedMessage());
                 });
     }

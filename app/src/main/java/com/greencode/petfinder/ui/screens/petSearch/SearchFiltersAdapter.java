@@ -38,11 +38,18 @@ public class SearchFiltersAdapter extends RecyclerView.Adapter<SearchFiltersAdap
     public void onBindViewHolder(SearchFilterViewHolder holder, int position) {
         SimpleFilterItem simpleFilterItem = simpleFilterItems.get(position);
         holder.tvTitle.setText(simpleFilterItem.getTitle());
+        holder.tvValue.setText(simpleFilterItem.getValue());
         holder.itemView.setOnClickListener(v -> {
-            if (searchFiltersClickListener != null){
-                searchFiltersClickListener.onFilterCLick(simpleFilterItem.getType());
+            if (searchFiltersClickListener != null) {
+                searchFiltersClickListener.onFilterCLick(position, simpleFilterItem.getType());
             }
         });
+    }
+
+    void changeItem(int index, SimpleFilterItem simpleFilterItem) {
+        simpleFilterItems.remove(index);
+        simpleFilterItems.add(index, simpleFilterItem);
+        notifyItemChanged(index);
     }
 
     @Override
@@ -66,7 +73,7 @@ public class SearchFiltersAdapter extends RecyclerView.Adapter<SearchFiltersAdap
 
     public interface SearchFiltersClickListener {
 
-        void onFilterCLick(String type);
+        void onFilterCLick(int position, String type);
 
     }
 

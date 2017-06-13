@@ -7,6 +7,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 
@@ -45,19 +46,25 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public <T> void startActivity(Class<T> t) {
+    protected <T> void startActivity(Class<T> t) {
         if (t == Activity.class) {
             Intent intent = new Intent(this, t);
             startActivity(intent);
         }
     }
 
-    public <T> void startActivity(Class<T> t, Bundle bundle) {
+    protected <T> void startActivity(Class<T> t, Bundle bundle) {
         if (t == Activity.class) {
             Intent intent = new Intent(this, t);
             intent.putExtra("extras", bundle);
             startActivity(intent);
         }
     }
+
+    protected void showToast(String toastText) {
+        Toast.makeText(this, toastText, Toast.LENGTH_LONG).show();
+    }
+
+    
 
 }

@@ -1,12 +1,12 @@
 package com.greencode.petfinder.ui.screens.petSingle;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -27,12 +27,10 @@ import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
-import com.greencode.petfinder.ui.screens.petList.SinglePetClickListener;
 import com.greencode.petfinder.ui.screens.petList.SinglePetListItemView;
 import com.greencode.petfinder.ui.screens.petSingle.viewitems.BigTextViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.DoubleTextLineViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
-import com.greencode.petfinder.ui.screens.shelterSingle.SimpleShelterItemView;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -56,6 +54,7 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
     SinglePetPresenter singlePetPresenter;
 
     SinglePetComponent singlePetComponent;
+
     AppBarLayout appBarLayout;
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbar;
@@ -174,7 +173,7 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
 
     @Override
     public void setPresenter(BasePresenter basePresenter) {
-
+        basePresenter.start();
     }
 
     @Override

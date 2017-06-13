@@ -29,22 +29,12 @@ public class BitTextDelegateAdapter implements DelegateAdapter<BigTextViewItem> 
     public void onBindViewHolder(RecyclerView.ViewHolder holder, BigTextViewItem bigTextViewItem) {
         BigTextViewHolder bigTextViewHolder = (BigTextViewHolder) holder;
         bigTextViewHolder.tvText.setText(bigTextViewItem.getText());
-        bigTextViewHolder.loadMoreView.setOnClickListener(v -> {
-            bigTextViewHolder.loadMoreView.setVisibility(View.GONE);
-            bigTextViewHolder.tvText.setMaxLines(100);
-
-        });
-
-
     }
 
     public static class BigTextViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tvText)
         TextView tvText;
-
-        @BindView(R.id.loadMoreView)
-        View loadMoreView;
 
         public BigTextViewHolder(View itemView) {
             super(itemView);

@@ -37,7 +37,6 @@ public class SinglePetPresenter implements SinglePetContract.Presenter {
 
     @Override
     public void loadPet(String id, boolean force) {
-
         repository.getPet(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
