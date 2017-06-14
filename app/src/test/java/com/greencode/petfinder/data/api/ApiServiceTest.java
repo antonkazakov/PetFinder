@@ -76,7 +76,7 @@ public class ApiServiceTest {
     @Test
     public void getPet() throws Exception {
         TestSubscriber<PetGetResponse> petGetResponseTestSubscriber = new TestSubscriber<>();
-        apiService.getPet("", "").subscribe(petGetResponseTestSubscriber);
+        apiService.getPet("").subscribe(petGetResponseTestSubscriber);
 
         petGetResponseTestSubscriber.assertNoErrors();
         petGetResponseTestSubscriber.assertCompleted();

@@ -2,9 +2,9 @@ package com.greencode.petfinder.data;
 
 import android.support.annotation.NonNull;
 
+import com.greencode.petfinder.BuildConfig;
 import com.greencode.petfinder.data.api.ApiService;
 
-import java.io.IOException;
 import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
@@ -15,7 +15,6 @@ import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -89,7 +88,7 @@ public class NetworkModule {
             Request request = chain.request();
             HttpUrl httpUrl = request.url()
                     .newBuilder()
-                    .addQueryParameter("key", "77cffd89b0d4cca16a350862872c2261")
+                    .addQueryParameter("key", BuildConfig.API_KEY)
                     .build();
             request = request.newBuilder().url(httpUrl).build();
             return chain.proceed(request);

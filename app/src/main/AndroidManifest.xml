@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.screens.main.MainContainerActivity">
+        <activity android:name=".ui.pages.mainPage.MainContainerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,15 +20,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.screens.petSearch.SearchFiltersActivity"
+            android:name=".ui.pages.petSearchPage.SearchFiltersActivity"
             android:label="@string/title_activity_search_filters"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.screens.petSingle.SinglePetActivity" />
+        <activity android:name=".ui.pages.petSinglePage.SinglePetActivity" />
         <activity
-            android:name=".ui.screens.shelterSingle.ShelterPageActivity"
+            android:name=".ui.pages.shelterSinglePage.ShelterPageActivity"
             android:label="@string/title_activity_shelter_page"
             android:theme="@style/SheltersTheme" />
-        <activity android:name=".ui.screens.petSingle.PetPhotoViewActivity"
+        <activity android:name=".ui.pages.petSinglePage.PetPhotoViewActivity"
             android:theme="@style/FullScreenActivityTheme"/>
     </application>
 

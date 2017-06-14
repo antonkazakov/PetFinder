@@ -67,7 +67,7 @@ public class CloudPetDataSourceTest {
 
     @Test
     public void getPetSuccessTest() throws Exception {
-        when(apiService.getPet(anyString(), anyString()))
+        when(apiService.getPet(anyString()))
                 .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetGetResponse.class)));
         when(petMapper.transform(any(PetGetResponse.class)))
                 .thenCallRealMethod();
@@ -88,7 +88,6 @@ public class CloudPetDataSourceTest {
 
         cloudPetDataSource.findPet(new HashMap<>()).subscribe(testSubscriber);
 
-        //Mockito.verify(petCache, Mockito.times(1)).putAll(Mockito.anyList());
         testSubscriber.assertNoErrors();
         testSubscriber.assertCompleted();
         Assert.assertEquals("37432659", testSubscriber.getOnNextEvents().get(0).get(0).getId());

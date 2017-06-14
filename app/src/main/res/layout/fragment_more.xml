@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.greencode.petfinder.ui.screens.morePage.MoreFragment">
+    tools:context="com.greencode.petfinder.ui.pages.morePage.MoreFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

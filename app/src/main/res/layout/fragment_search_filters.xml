@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.petSearch.SearchFiltersFragment">
+    tools:context=".ui.pages.petSearchPage.SearchFiltersFragment">
 
     <android.support.v7.widget.RecyclerView
         android:background="@color/pureWhite"

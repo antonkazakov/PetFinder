@@ -10,7 +10,7 @@ import com.greencode.petfinder.data.repository.PetRepository;
 import com.greencode.petfinder.data.repository.PetRepositoryModule;
 import com.greencode.petfinder.data.repository.ShelterRepositoryModule;
 import com.greencode.petfinder.data.repository.SheltersRepository;
-import com.greencode.petfinder.ui.screens.shelterSingle.ShelterSingleModule;
+import com.greencode.petfinder.ui.pages.shelterSinglePage.ShelterSingleModule;
 
 import javax.inject.Singleton;
 

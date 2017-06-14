@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -35,7 +34,7 @@ public class CloudPetDataSource implements PetDataSource {
 
     @Override
     public Observable<Pet> getPet(String id) {
-        return apiService.getPet(id, "77cffd89b0d4cca16a350862872c2261")
+        return apiService.getPet(id)
                 .flatMap(petResponse -> Observable.just(petMapper.transform(petResponse)))
                 .doOnNext(pet -> petCache.put(pet))
                 .flatMap(Observable::just)

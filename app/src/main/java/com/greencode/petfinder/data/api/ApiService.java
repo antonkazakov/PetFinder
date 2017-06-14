@@ -1,9 +1,9 @@
 package com.greencode.petfinder.data.api;
 
-import com.greencode.petfinder.data.entity.beans.places.GeocodeResponse;
-import com.greencode.petfinder.data.entity.beans.shelter.ShelterFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetFindResponse;
 import com.greencode.petfinder.data.entity.beans.pet.PetGetResponse;
+import com.greencode.petfinder.data.entity.beans.places.GeocodeResponse;
+import com.greencode.petfinder.data.entity.beans.shelter.ShelterFindResponse;
 import com.greencode.petfinder.data.entity.beans.shelter.ShelterGetResponse;
 
 import java.util.Map;
@@ -27,12 +27,11 @@ public interface ApiService {
     /**
      * Returns a record for a single pet.
      * @param id
-     * @param key
      * @return
      */
     @FormUrlEncoded
     @POST("pet.get")
-    Observable<PetGetResponse> getPet(@Field("id") String id, @Field("key") String key);
+    Observable<PetGetResponse> getPet(@Field("id") String id);
 
     /**
      * Returns a record for a randomly selected pet. You can choose the characteristics of the pet
