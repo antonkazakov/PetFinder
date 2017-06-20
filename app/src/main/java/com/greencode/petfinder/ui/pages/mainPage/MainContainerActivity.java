@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ProgressBar;
 
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.pages.petListPage.PetListFragment;
@@ -19,7 +18,7 @@ import com.greencode.petfinder.ui.pages.shelterListPage.SheltersFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainContainerActivity extends AppCompatActivity implements MainProgressListener{
+public class MainContainerActivity extends AppCompatActivity{
 
     @BindView(R.id.bottomNavView)
     BottomNavigationView bottomNavigationView;
@@ -29,9 +28,6 @@ public class MainContainerActivity extends AppCompatActivity implements MainProg
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    @BindView(R.id.mainProgressBar)
-    ProgressBar mainProgressBar;
 
     @BindView(R.id.logoView)
     AppCompatImageView logoView;
@@ -47,7 +43,7 @@ public class MainContainerActivity extends AppCompatActivity implements MainProg
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setCurrentItem(0, false);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()){
@@ -72,15 +68,6 @@ public class MainContainerActivity extends AppCompatActivity implements MainProg
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
-    @Override
-    public void onStartLoading() {
-        mainProgressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onStopLoading() {
-        mainProgressBar.setVisibility(View.GONE);
-    }
 
     public static class MainPagerAdapter extends FragmentPagerAdapter{
 

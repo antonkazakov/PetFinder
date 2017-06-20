@@ -21,10 +21,11 @@ public class SearchFiltersActivity extends BaseActivity implements SearchFilters
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
-        setTitle("Search");
+        getSupportActionBar().setTitle("Search");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_action_arrow_back));
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         SearchFiltersFragment searchFiltersFragment = new SearchFiltersFragment();
         searchFiltersFragment.setSearchListener(this);

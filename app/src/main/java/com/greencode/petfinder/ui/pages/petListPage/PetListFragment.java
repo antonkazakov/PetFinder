@@ -1,7 +1,6 @@
 package com.greencode.petfinder.ui.pages.petListPage;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,7 +19,6 @@ import com.greencode.petfinder.PFApplication;
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
-import com.greencode.petfinder.ui.pages.mainPage.MainProgressListener;
 import com.greencode.petfinder.ui.pages.petSearchPage.SearchFiltersActivity;
 import com.greencode.petfinder.ui.pages.petSinglePage.SinglePetActivity;
 import com.greencode.petfinder.ui.widgets.EmptyRecyclerView;
@@ -60,8 +58,6 @@ public class PetListFragment extends Fragment implements SinglePetClickListenerE
     @Inject
     PetListPresenter petListPresenter;
 
-    MainProgressListener mainProgressListener;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,18 +69,6 @@ public class PetListFragment extends Fragment implements SinglePetClickListenerE
                 .petListModule(new PetListModule(this))
                 .build();
         petListComponent.inject(this);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mainProgressListener = (MainProgressListener) context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mainProgressListener = null;
     }
 
     @Override
@@ -171,13 +155,6 @@ public class PetListFragment extends Fragment implements SinglePetClickListenerE
     @Override
     public void showLoading(boolean isLoading) {
         swipeRefreshLayout.setRefreshing(false);
-        if (mainProgressListener != null) {
-            if (isLoading) {
-                mainProgressListener.onStartLoading();
-            } else {
-                mainProgressListener.onStopLoading();
-            }
-        }
     }
 
     @Override

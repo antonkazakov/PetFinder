@@ -59,10 +59,10 @@ public class SearchFiltersFragment extends Fragment implements SearchFiltersAdap
         View view = inflater.inflate(R.layout.fragment_search_filters, container, false);
         ButterKnife.bind(this, view);
         List<SimpleFilterItem> list = new ArrayList<>();
-        list.add(new SimpleFilterItem("Animal", null, SimpleFilterItem.TYPE_ANIMAL));
-        list.add(new SimpleFilterItem("Size", null, SimpleFilterItem.TYPE_SIZE));
-        list.add(new SimpleFilterItem("Sex", null, SimpleFilterItem.TYPE_SEX));
-        list.add(new SimpleFilterItem("Age", null, SimpleFilterItem.TYPE_AGE));
+        list.add(new SimpleFilterItem("type", null, SimpleFilterItem.TYPE_ANIMAL));
+        list.add(new SimpleFilterItem("size", null, SimpleFilterItem.TYPE_SIZE));
+        list.add(new SimpleFilterItem("sex", null, SimpleFilterItem.TYPE_SEX));
+        list.add(new SimpleFilterItem("age", null, SimpleFilterItem.TYPE_AGE));
         searchAdapter = new SearchFiltersAdapter(list, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(searchAdapter);
@@ -88,13 +88,13 @@ public class SearchFiltersFragment extends Fragment implements SearchFiltersAdap
                 buildMultipleDialog("Animal", type, getActivity().getResources().getStringArray(R.array.animals), position);
                 break;
             case SimpleFilterItem.TYPE_SIZE:
-                buildMultipleDialog("Animal Size", type, getActivity().getResources().getStringArray(R.array.sizes), position);
+                buildSingleDialog("Animal Size", type, getActivity().getResources().getStringArray(R.array.sizes), position);
                 break;
             case SimpleFilterItem.TYPE_SEX:
-                buildMultipleDialog("Animal Sex", type, getActivity().getResources().getStringArray(R.array.sexes), position);
+                buildSingleDialog("Animal Sex", type, getActivity().getResources().getStringArray(R.array.sexes), position);
                 break;
             case SimpleFilterItem.TYPE_AGE:
-                buildMultipleDialog("Animal Age", type, getActivity().getResources().getStringArray(R.array.ages), position);
+                buildSingleDialog("Animal Age", type, getActivity().getResources().getStringArray(R.array.ages), position);
                 break;
         }
     }
@@ -118,6 +118,20 @@ public class SearchFiltersFragment extends Fragment implements SearchFiltersAdap
                 .positiveText("OK")
                 .show();
     }
+
+    private void buildSingleDialog(String title, String type, String[] array, int position) {
+        new MaterialDialog.Builder(getActivity())
+                .title(title)
+                .items(array)
+                .itemsCallbackSingleChoice(-1, (dialog, itemView, which, text) -> {
+                    filtersMap.put(type, text.toString());
+                    return true;
+                })
+                .positiveText("OK")
+                .show();
+    }
+
+
 
     public interface OnSearchStartListener {
 
