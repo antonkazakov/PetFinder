@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.greencode.petfinder.data.repository.LocationRepository;
 import com.greencode.petfinder.data.repository.SheltersRepository;
-import com.greencode.petfinder.ui.FragmentScope;
+import com.greencode.petfinder.ui.injection.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;

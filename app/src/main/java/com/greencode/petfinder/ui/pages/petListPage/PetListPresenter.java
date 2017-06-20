@@ -41,40 +41,6 @@ public class PetListPresenter implements PetListContract.Presenter {
 
     @Override
     public void refreshFeed() {
-//        Observable<SimpleLocation> simpleLocationObservable = locationRepository.getMyLocation();
-//
-//        Observable<List<TestFuckItem>> petObservable = simpleLocationObservable
-//                .flatMap(simpleLocation -> {
-//                    Map<String, String> paramsMap = new HashMap<>();
-//                    paramsMap.put("location", "QC");
-//                    paramsMap.put("count", "20");
-//                    return petRepository.findPet(paramsMap);
-//                })
-//                .flatMap(pets -> Observable.just(petListMapper.transformSinglePet(pets)))
-//                .flatMap(listItemViews -> Observable.just(petListMapper.transformSinglePet1(listItemViews)));
-
-//        Observable<LuckyPetListItemView> luckyPetListItemViewObservable = simpleLocationObservable
-//                .flatMap(simpleLocation -> {
-//                    Map<String, String> paramsMap = new HashMap<>();
-//                    paramsMap.put("location", "QC");
-//                    return petRepository.getRandomPet(paramsMap);
-//                })
-//                .flatMap(pet -> Observable.just(petListMapper.transformLuckyPet(pet)));
-//
-//        Observable.zip(petObservable, luckyPetListItemViewObservable,(testFuckItems, luckyPetListItemView) -> {
-//            List<ViewItem> viewItems = new ArrayList<>();
-//            viewItems.addAll(testFuckItems);
-//            viewItems.add(luckyPetListItemView);
-//            return viewItems;
-//        })
-//                .doOnSubscribe(() -> view.showLoading(true))
-//                .doOnTerminate(() -> view.showLoading(false))
-//                .subscribe(list -> {
-//                    view.onPetsRefreshed1(list);
-//                }, throwable -> {
-//                    view.showError("ERROR");
-//                });
-        //Log.i("dfdsf", "refreshFeed: ");
         locationRepository.getMyLocation()
                 .flatMap(simpleLocation -> {
                     Map<String, String> paramsMap = new HashMap<>();

@@ -1,15 +1,18 @@
 package com.greencode.petfinder.ui.pages.shelterSinglePage;
 
+import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
-import com.greencode.petfinder.data.repository.SheltersRepository;
+import com.greencode.petfinder.domain.GetPetsInShelterInteractor;
+import com.greencode.petfinder.domain.GetShelterInteractor;
 import com.greencode.petfinder.ui.pages.petListPage.PetListMapper;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import rx.functions.Action1;
+import rx.Observer;
 
 /**
  * @author Anton Kazakov
@@ -18,13 +21,18 @@ import rx.functions.Action1;
 
 public class ShelterPresenter implements ShelterPageContract.Presenter {
 
-    private SheltersRepository sheltersRepository;
+    private GetShelterInteractor getShelterInteractor;
+    private GetPetsInShelterInteractor getPetsInShelterInteractor;
     private ShelterPageContract.View view;
     private PetListMapper petListMapper;
 
     @Inject
-    public ShelterPresenter(SheltersRepository sheltersRepository, ShelterPageContract.View view, PetListMapper petListMapper) {
-        this.sheltersRepository = sheltersRepository;
+    public ShelterPresenter(GetShelterInteractor getShelterInteractor,
+                            GetPetsInShelterInteractor getPetsInShelterInteractor,
+                            ShelterPageContract.View view,
+                            PetListMapper petListMapper) {
+        this.getShelterInteractor = getShelterInteractor;
+        this.getPetsInShelterInteractor = getPetsInShelterInteractor;
         this.view = view;
         this.petListMapper = petListMapper;
     }
@@ -33,15 +41,22 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
     public void getShelter(String id) {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
-        sheltersRepository.getShelter(map)
-                .subscribe(new Action1<Shelter>() {
-                    @Override
-                    public void call(Shelter shelter) {
-                        view.onShelterLoaded(shelter);
-                    }
-                }, throwable -> {
-                    view.showError(throwable.getLocalizedMessage());
-                });
+        getShelterInteractor.execute(map, new Observer<Shelter>() {
+            @Override
+            public void onCompleted() {
+                //stub
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                view.showError(e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onNext(Shelter shelter) {
+                view.onShelterLoaded(shelter);
+            }
+        });
     }
 
     @Override
@@ -49,6 +64,22 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("count", "20");
+        getPetsInShelterInteractor.execute(map, new Observer<List<Pet>>() {
+            @Override
+            public void onCompleted() {
+                //stub
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<Pet> pets) {
+
+            }
+        });
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.greencode.petfinder.ui;
+package com.greencode.petfinder.ui.injection;
 
 import javax.inject.Scope;
 

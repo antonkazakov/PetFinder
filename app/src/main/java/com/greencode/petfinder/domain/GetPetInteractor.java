@@ -2,8 +2,8 @@ package com.greencode.petfinder.domain;
 
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.repository.PetRepository;
-import com.greencode.petfinder.domain.qualifiers.JobThread;
-import com.greencode.petfinder.domain.qualifiers.UIThread;
+import com.greencode.petfinder.domain.injection.JobThread;
+import com.greencode.petfinder.domain.injection.UIThread;
 
 import javax.inject.Inject;
 

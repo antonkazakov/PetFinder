@@ -1,7 +1,7 @@
 package com.greencode.petfinder.ui.pages.petSearchPage;
 
 import com.greencode.petfinder.data.repository.PetRepository;
-import com.greencode.petfinder.ui.FragmentScope;
+import com.greencode.petfinder.ui.injection.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;
