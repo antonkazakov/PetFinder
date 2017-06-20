@@ -19,6 +19,7 @@ public abstract class UseCase<ResultType, ParameterType> {
     private Scheduler jobScheduler;
     private CompositeSubscription compositeSubscription;
 
+
     public UseCase(@UIThread Scheduler uiScheduler, @JobThread Scheduler jobScheduler) {
         this.uiScheduler = uiScheduler;
         this.jobScheduler = jobScheduler;
@@ -34,7 +35,7 @@ public abstract class UseCase<ResultType, ParameterType> {
                 .subscribe(subscriber));
     }
 
-    public void execute(Subscriber<ResultType> subscriber) {
+    private void execute(Subscriber<ResultType> subscriber) {
         execute(null, subscriber);
     }
 

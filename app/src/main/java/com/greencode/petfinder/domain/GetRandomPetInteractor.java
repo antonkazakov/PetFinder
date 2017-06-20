@@ -1,34 +1,36 @@
 package com.greencode.petfinder.domain;
 
-import android.support.annotation.NonNull;
-
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.repository.PetRepository;
 import com.greencode.petfinder.domain.qualifiers.JobThread;
 import com.greencode.petfinder.domain.qualifiers.UIThread;
+
+import java.util.Map;
+
+import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Scheduler;
 
 /**
  * @author Anton Kazakov
- * @date 19.06.17.
+ * @date 20.06.17.
  */
 
-public class GetPets extends UseCase<Pet, String> {
+public class GetRandomPetInteractor extends UseCase<Pet, Map<String, String>> {
 
     private PetRepository petRepository;
 
-    public GetPets(@NonNull PetRepository petRepository,
-                   @UIThread Scheduler uiScheduler,
-                   @JobThread Scheduler jobScheduler) {
+    @Inject
+    public GetRandomPetInteractor(@UIThread Scheduler uiScheduler,
+                                  @JobThread Scheduler jobScheduler,
+                                  PetRepository petRepository) {
         super(uiScheduler, jobScheduler);
         this.petRepository = petRepository;
     }
 
     @Override
-    protected Observable<Pet> buildObservable(String parameter) {
-        return petRepository.getPet(parameter);
+    protected Observable<Pet> buildObservable(Map<String, String> parameter) {
+        return petRepository.getRandomPet(parameter);
     }
-
 }
