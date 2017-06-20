@@ -20,6 +20,8 @@ public interface PetSearchContract {
 
     interface View extends BaseView {
 
+        void showPets();
+
     }
 
 }

@@ -1,8 +1,12 @@
 package com.greencode.petfinder.ui.pages.petSearchPage;
 
-import com.greencode.petfinder.data.repository.PetRepository;
+import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
+import com.greencode.petfinder.domain.SearchPetsInteractor;
 
+import java.util.List;
 import java.util.Map;
+
+import rx.Observer;
 
 /**
  * @author Anton Kazakov
@@ -11,11 +15,11 @@ import java.util.Map;
 
 public class PetSearchPresenter implements PetSearchContract.Presenter {
 
-    private PetRepository petRepository;
+    private SearchPetsInteractor searchPetsInteractor;
     private PetSearchContract.View view;
 
-    public PetSearchPresenter(PetRepository petRepository, PetSearchContract.View view) {
-        this.petRepository = petRepository;
+    public PetSearchPresenter(SearchPetsInteractor searchPetsInteractor, PetSearchContract.View view) {
+        this.searchPetsInteractor = searchPetsInteractor;
         this.view = view;
     }
 
@@ -26,14 +30,22 @@ public class PetSearchPresenter implements PetSearchContract.Presenter {
 
     @Override
     public void searchPets(Map<String, String> filterMap) {
-        petRepository.findPet(filterMap)
-                .doOnSubscribe(() -> view.showLoading(true))
-                .doOnTerminate(() -> view.showLoading(false))
-                .subscribe(pets -> {
-                        },
-                        throwable -> {
-                        });
-    }
+        searchPetsInteractor.execute(filterMap, new Observer<List<Pet>>() {
+            @Override
+            public void onCompleted() {
 
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<Pet> pets) {
+                view.showPets();
+            }
+        });
+    }
 
 }

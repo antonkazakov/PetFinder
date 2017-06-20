@@ -20,7 +20,6 @@ public abstract class UseCase<ResultType, ParameterType> {
     private Scheduler jobScheduler;
     private CompositeSubscription compositeSubscription;
 
-
     public UseCase(@UIThread Scheduler uiScheduler, @JobThread Scheduler jobScheduler) {
         this.uiScheduler = uiScheduler;
         this.jobScheduler = jobScheduler;

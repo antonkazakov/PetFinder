@@ -30,7 +30,7 @@ public class SearchFiltersActivity extends BaseActivity implements SearchFilters
         searchFiltersFragment.setSearchListener(this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.content_search_filters, searchFiltersFragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack("TEST");
         transaction.commit();
     }
 
@@ -42,9 +42,10 @@ public class SearchFiltersActivity extends BaseActivity implements SearchFilters
     @Override
     public void onFiltersAssembled(Map<String, String> filtersMap) {
         PetSearchResultFragment petSearchResultFragment = new PetSearchResultFragment();
+        petSearchResultFragment.startSearchWithFilters(filtersMap);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.content_search_filters, petSearchResultFragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.content_search_filters, petSearchResultFragment);
+        transaction.addToBackStack("TEST");
         transaction.commit();
     }
 }

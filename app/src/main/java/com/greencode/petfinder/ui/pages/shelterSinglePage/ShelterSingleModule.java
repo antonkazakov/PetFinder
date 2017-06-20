@@ -2,6 +2,7 @@ package com.greencode.petfinder.ui.pages.shelterSinglePage;
 
 import android.support.annotation.NonNull;
 
+import com.greencode.petfinder.data.repository.PetRepository;
 import com.greencode.petfinder.data.repository.SheltersRepository;
 import com.greencode.petfinder.domain.GetPetsInShelterInteractor;
 import com.greencode.petfinder.domain.GetShelterInteractor;
@@ -34,6 +35,14 @@ public class ShelterSingleModule {
                                                         GetPetsInShelterInteractor getPetsInShelterInteractor,
                                                         PetListMapper petListMapper) {
         return new ShelterPresenter(getShelterInteractor, getPetsInShelterInteractor, view, petListMapper);
+    }
+
+    @FragmentScope
+    @Provides
+    public GetPetsInShelterInteractor provideGetPetsInShelterInteractor(@UIThread Scheduler uiScheduler,
+                                                                        @JobThread Scheduler jobScheduler,
+                                                                        @NonNull PetRepository petRepository) {
+        return new GetPetsInShelterInteractor(uiScheduler, jobScheduler, petRepository);
     }
 
     @FragmentScope

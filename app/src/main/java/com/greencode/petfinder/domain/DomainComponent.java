@@ -11,4 +11,7 @@ import dagger.Component;
 @Component(modules = DomainModule.class)
 @Singleton
 public interface DomainComponent {
+
+
+
 }

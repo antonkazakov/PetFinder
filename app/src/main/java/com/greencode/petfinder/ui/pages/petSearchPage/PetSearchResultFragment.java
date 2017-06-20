@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.greencode.petfinder.PFApplication;
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.ui.base.BasePresenter;
 
@@ -24,6 +25,8 @@ public class PetSearchResultFragment extends Fragment implements PetSearchContra
     @Inject
     PetSearchPresenter petSearchPresenter;
 
+    private PetSearchComponent petSearchComponent;
+
     Map<String, String> filterMap = new HashMap<>();
 
     public PetSearchResultFragment() {
@@ -32,6 +35,19 @@ public class PetSearchResultFragment extends Fragment implements PetSearchContra
 
     public void startSearchWithFilters(Map<String, String> filterMap) {
         this.filterMap.putAll(filterMap);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        petSearchComponent = DaggerPetSearchComponent
+                .builder()
+                .appComponent(PFApplication.getAppComponent())
+                .petSearchModule(new PetSearchModule(this))
+                .build();
+        petSearchComponent.inject(this);
+
     }
 
     @Override
@@ -59,6 +75,11 @@ public class PetSearchResultFragment extends Fragment implements PetSearchContra
 
     @Override
     public void showLoading(boolean isLoading) {
+
+    }
+
+    @Override
+    public void showPets() {
 
     }
 
