@@ -11,11 +11,12 @@ import com.greencode.petfinder.ui.base.ViewItem;
 public class PetSearchResultsItemView implements ViewItem {
 
     private String name;
-
+    private String photo;
     private String value;
 
-    public PetSearchResultsItemView(String name, String value) {
+    public PetSearchResultsItemView(String name, String photo, String value) {
         this.name = name;
+        this.photo = photo;
         this.value = value;
     }
 
@@ -25,6 +26,14 @@ public class PetSearchResultsItemView implements ViewItem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getValue() {

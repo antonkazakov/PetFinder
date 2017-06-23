@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.greencode.petfinder.R;
-import com.greencode.petfinder.ui.pages.petListPage.SinglePetListItemView;
 
 import java.util.List;
 
@@ -21,9 +20,9 @@ import butterknife.ButterKnife;
 
 public class PetSearchAdapter extends RecyclerView.Adapter<PetSearchAdapter.PetSearchViewHolder> {
 
-    private List<SinglePetListItemView> petListItemViews;
+    private List<PetSearchResultsItemView> petListItemViews;
 
-    public PetSearchAdapter(List<SinglePetListItemView> petListItemViews) {
+    public PetSearchAdapter(List<PetSearchResultsItemView> petListItemViews) {
         this.petListItemViews = petListItemViews;
     }
 
