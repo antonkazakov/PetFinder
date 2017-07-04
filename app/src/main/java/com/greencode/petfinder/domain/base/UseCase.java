@@ -8,7 +8,6 @@ import com.greencode.petfinder.domain.injection.UIThread;
 import rx.Observable;
 import rx.Observer;
 import rx.Scheduler;
-import rx.Subscriber;
 import rx.functions.Action0;
 import rx.subscriptions.CompositeSubscription;
 
@@ -32,7 +31,29 @@ public abstract class UseCase<ResultType, ParameterType> {
     @NonNull
     protected abstract Observable<ResultType> buildObservable(ParameterType parameter);
 
-    public void execute(ParameterType parameter, Observer<ResultType> observer) {
+    // TODO: 04.07.17 possible improvements.
+
+    /**
+     * Build observable but do not execute it. Now I'm using it when need continuing down the chain.
+     * But I bet it' not the best solution here.
+     *
+     * @param parameter
+     * @return
+     */
+    @NonNull
+    public Observable<ResultType> buildAndNoExecute(ParameterType parameter) {
+        return buildObservable(parameter)
+                .subscribeOn(jobScheduler)
+                .observeOn(uiScheduler);
+    }
+
+    /**
+     * Build and execute observable
+     *
+     * @param parameter
+     * @param observer
+     */
+    public void buildAndExecute(ParameterType parameter, Observer<ResultType> observer) {
         compositeSubscription.add(buildObservable(parameter)
                 .subscribeOn(jobScheduler)
                 .observeOn(uiScheduler)
@@ -41,15 +62,16 @@ public abstract class UseCase<ResultType, ParameterType> {
 
     /**
      * Execute observable with some actions
+     *
      * @param parameter
      * @param onSubscribeAction
      * @param onTerminateAction
      * @param observer
      */
-    public void execute(ParameterType parameter,
-                        Action0 onSubscribeAction,
-                        Action0 onTerminateAction,
-                        Observer<ResultType> observer) {
+    public void buildAndExecute(ParameterType parameter,
+                                Action0 onSubscribeAction,
+                                Action0 onTerminateAction,
+                                Observer<ResultType> observer) {
         compositeSubscription.add(buildObservable(parameter)
                 .subscribeOn(jobScheduler)
                 .observeOn(uiScheduler)
@@ -58,8 +80,13 @@ public abstract class UseCase<ResultType, ParameterType> {
                 .subscribe(observer));
     }
 
-    public void execute(Subscriber<ResultType> subscriber) {
-        execute(null, subscriber);
+    /**
+     * Build and execute observable without parameters
+     *
+     * @param observer
+     */
+    public void buildAndExecute(Observer<ResultType> observer) {
+        buildAndExecute(null, observer);
     }
 
     public void clear() {

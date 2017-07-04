@@ -41,7 +41,7 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
     public void getShelter(String id) {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
-        getShelterInteractor.execute(map, new Observer<Shelter>() {
+        getShelterInteractor.buildAndExecute(map, new Observer<Shelter>() {
             @Override
             public void onCompleted() {
                 //stub
@@ -64,7 +64,7 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("count", "20");
-        getPetsInShelterInteractor.execute(map, new Observer<List<Pet>>() {
+        getPetsInShelterInteractor.buildAndExecute(map, new Observer<List<Pet>>() {
             @Override
             public void onCompleted() {
 

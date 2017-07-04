@@ -36,7 +36,7 @@ public class PetMapper implements Mapper<PetGetResponse,Pet> {
         pet.setAnimal(petGetResponse.getPet().getAnimal());
         pet.setAge(petGetResponse.getPet().getAge());
         pet.setSize(petGetResponse.getPet().getSize());
-
+        pet.setShelterId(petGetResponse.getPet().getShelterId());
         RealmList<Photo> photoRealmList = new RealmList<>();
         for (PetGetResponse.Photo photoItem : petGetResponse.getPet().getMedia().getPhotos()){
             if (photoItem.getSize().equals(BIG_PHOTO)){

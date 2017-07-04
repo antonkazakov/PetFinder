@@ -30,6 +30,7 @@ public class SinglePetGodAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         adapterMap.put(R.layout.shelter_page_simple_item, new ShelterSimpleAdapter());
         adapterMap.put(R.layout.big_text_item, new BitTextDelegateAdapter());
         adapterMap.put(R.layout.section_item, new SectionAdapter());
+        adapterMap.put(R.layout.square_photo_item2, new SimplePhotoAdapter());
     }
 
     @Override
@@ -38,6 +39,7 @@ public class SinglePetGodAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         adapterMap.get(holder.getItemViewType()).onBindViewHolder(holder, viewItems.get(position));
     }
@@ -52,7 +54,7 @@ public class SinglePetGodAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return viewItems.size();
     }
 
-    synchronized void updateData(List<ViewItem> viewItems1){
+    void updateData(List<ViewItem> viewItems1){
         viewItems.addAll(viewItems1);
         notifyDataSetChanged();
     }

@@ -3,7 +3,6 @@ package com.greencode.petfinder.ui.pages.petSinglePage;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.BaseView;
-import com.greencode.petfinder.ui.pages.petListPage.SinglePetListItemView;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public interface SinglePetContract {
 
         void showPet(Pet pet);
 
-        void showNeighbors(List<SinglePetListItemView> pets);
+        void showNeighbors(List<SimplePetListItemView> pets);
 
     }
 

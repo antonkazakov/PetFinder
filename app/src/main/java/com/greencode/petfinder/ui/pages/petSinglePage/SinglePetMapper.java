@@ -18,16 +18,17 @@ public class SinglePetMapper {
     public SinglePetMapper() {
     }
 
-    public SimplePetListItemView transformTest(Pet pet){
+    public SimplePetListItemView transformTest(Pet pet) {
         SimplePetListItemView simplePetListItemView = new SimplePetListItemView();
         simplePetListItemView.setId(pet.getId());
-        simplePetListItemView.setPhotoUrl(pet.getPhotos().get(0).getUrl());
+        if (pet.getPhotos() != null)
+            simplePetListItemView.setPhotoUrl(pet.getPhotos().get(0).getUrl());
         return simplePetListItemView;
     }
 
-    public List<SimplePetListItemView> transformLuckyPetsdf(List<Pet> pets){
+    public List<SimplePetListItemView> transformLuckyPetsdf(List<Pet> pets) {
         List<SimplePetListItemView> simplePetListItemViews = new ArrayList<>(pets.size());
-        for (Pet pet : pets){
+        for (Pet pet : pets) {
             simplePetListItemViews.add(transformTest(pet));
         }
         return simplePetListItemViews;

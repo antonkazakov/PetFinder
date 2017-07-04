@@ -24,7 +24,6 @@ public class SinglePetViewPagerAdapter extends PagerAdapter {
     private List<Photo> photos;
     private SinglePetPhotoClickListener singlePetPhotoClickListener;
 
-
     public SinglePetViewPagerAdapter(Context context, SinglePetPhotoClickListener singlePetPhotoClickListener, List<Photo> photos) {
         this.context = context;
         this.photos = photos;
@@ -55,7 +54,6 @@ public class SinglePetViewPagerAdapter extends PagerAdapter {
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
-
 
     public interface SinglePetPhotoClickListener {
 

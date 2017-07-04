@@ -11,7 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -27,7 +27,6 @@ import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
-import com.greencode.petfinder.ui.pages.petListPage.SinglePetListItemView;
 import com.greencode.petfinder.ui.pages.petSinglePage.viewitems.BigTextViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.DoubleTextLineViewItem;
 import com.greencode.petfinder.ui.viewmodels.baseModels.SectionViewItem;
@@ -44,7 +43,13 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class SinglePetFragment extends Fragment implements SinglePetContract.View{
+public class SinglePetFragment extends Fragment implements SinglePetContract.View {
+
+    // TODO: 04.07.17 CHANGE IT
+    /**
+     * This is magic constant which equals to rows in recycler view before
+     */
+    private static final int MAGIC = 6;
 
     private SinglePetViewPagerAdapter photoViewPagerAdapter;
 
@@ -83,8 +88,8 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         View view = inflater.inflate(R.layout.fragment_single_pet, container, false);
         ButterKnife.bind(this, view);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_action_arrow_back_white));
 
@@ -94,14 +99,14 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
         photos.add(new Photo("1", getArguments().getString("url")));
-        SinglePetViewPagerAdapter.SinglePetPhotoClickListener singlePetPhotoClickListener = position -> goToPhotoActivity(position);
+        SinglePetViewPagerAdapter.SinglePetPhotoClickListener singlePetPhotoClickListener =
+                position -> goToPhotoActivity(position);
 
         photoViewPagerAdapter = new SinglePetViewPagerAdapter(getActivity(), singlePetPhotoClickListener, photos);
         viewPager.setAdapter(photoViewPagerAdapter);
         photoViewPagerAdapter.notifyDataSetChanged();
         mIndicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
         mIndicator.setViewPager(viewPager);
-
 
         appBarLayout = (AppBarLayout) view.findViewById(R.id.appbar);
         appBarLayout.addOnOffsetChangedListener((appBarLayout1, verticalOffset) -> {
@@ -114,9 +119,7 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
             }
         });
         setHasOptionsMenu(true);
-        singlePetGodAdapter = new SinglePetGodAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(singlePetGodAdapter);
+        initRecyclerView();
         return view;
     }
 
@@ -131,7 +134,6 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
                 .singlePetModule(new SinglePetModule(this))
                 .build();
         singlePetComponent.inject(this);
-
         singlePetPresenter.loadPet(getArguments().getString("id"), false);
     }
 
@@ -143,9 +145,24 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         shareItem.setOnMenuItemClickListener(item -> true);
     }
 
+    private void initRecyclerView(){
+        singlePetGodAdapter = new SinglePetGodAdapter();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position<MAGIC){
+                    return 2;
+                }
+                return 1;
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(singlePetGodAdapter);
+    }
+
     @Override
     public void showPet(Pet pet) {
-        //singlePetPresenter.loadShelterNeighbor(pet.getShelterId(),15);
         collapsingToolbar.setTitle(pet.getName());
         if (photos.size() > 1) {
             mIndicator.setVisibility(View.VISIBLE);
@@ -161,15 +178,15 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         viewItems.add(new BigTextViewItem(pet.getDescription()));
         viewItems.add(new SectionViewItem("Neighbors", R.color.colorPrimary));
         singlePetGodAdapter.updateData(viewItems);
+        singlePetPresenter.loadShelterNeighbor(pet.getShelterId(), 10);
     }
 
     @Override
-    public void showNeighbors(List<SinglePetListItemView> pets) {
+    public void showNeighbors(List<SimplePetListItemView> pets) {
         List<ViewItem> viewItems = new ArrayList<>();
         viewItems.addAll(pets);
         singlePetGodAdapter.updateData(viewItems);
     }
-
 
     @Override
     public void setPresenter(BasePresenter basePresenter) {
@@ -188,10 +205,11 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
 
     private void goToPhotoActivity(int activePosition) {
         Intent intent = new Intent(getActivity(), PetPhotoViewActivity.class);
-        ArrayList<String> urls = new ArrayList<String>(){{
-            for (Photo p : photos){
+        ArrayList<String> urls = new ArrayList<String>() {{
+            for (Photo p : photos) {
                 add(p.getUrl());
-            }}};
+            }
+        }};
         intent.putStringArrayListExtra("photos", urls);
         intent.putExtra("position", activePosition);
         startActivity(intent);

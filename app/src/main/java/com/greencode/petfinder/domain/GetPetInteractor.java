@@ -6,6 +6,8 @@ import com.greencode.petfinder.domain.base.UseCase;
 import com.greencode.petfinder.domain.injection.JobThread;
 import com.greencode.petfinder.domain.injection.UIThread;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Scheduler;
 
@@ -18,6 +20,7 @@ public class GetPetInteractor extends UseCase<Pet, String> {
 
     private PetRepository petRepository;
 
+    @Inject
     public GetPetInteractor(@UIThread Scheduler uiScheduler,
                             @JobThread Scheduler jobScheduler,
                             PetRepository petRepository) {
@@ -29,5 +32,7 @@ public class GetPetInteractor extends UseCase<Pet, String> {
     protected Observable<Pet> buildObservable(String parameter) {
         return petRepository.getPet(parameter);
     }
+
+
 
 }

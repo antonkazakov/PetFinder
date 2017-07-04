@@ -36,7 +36,7 @@ public class PetSearchPresenter implements PetSearchContract.Presenter {
 
     @Override
     public void searchPets(Map<String, String> filterMap) {
-        searchPetsInteractor.execute(filterMap,
+        searchPetsInteractor.buildAndExecute(filterMap,
                 () -> view.showLoading(true),
                 () -> view.showLoading(false),
                 new PetSearchObserver());

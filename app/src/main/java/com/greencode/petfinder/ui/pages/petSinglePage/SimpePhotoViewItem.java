@@ -5,22 +5,12 @@ import com.greencode.petfinder.ui.base.ViewItem;
 
 /**
  * @author Anton Kazakov
- * @date 26.04.17.
+ * @date 04.07.17.
  */
 
-public class SimplePetListItemView implements ViewItem {
+public class SimpePhotoViewItem implements ViewItem {
 
-    private String id;
-
-    private String photoUrl;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    String photoUrl;
 
     public String getPhotoUrl() {
         return photoUrl;

@@ -9,6 +9,8 @@ import com.greencode.petfinder.domain.injection.UIThread;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Scheduler;
 
@@ -21,6 +23,7 @@ public class GetPetsInShelterInteractor extends UseCase<List<Pet>, Map<String, S
 
     private PetRepository petRepository;
 
+    @Inject
     public GetPetsInShelterInteractor(@UIThread Scheduler uiScheduler,
                                       @JobThread Scheduler jobScheduler,
                                       PetRepository petRepository) {
@@ -32,4 +35,7 @@ public class GetPetsInShelterInteractor extends UseCase<List<Pet>, Map<String, S
     protected Observable<List<Pet>> buildObservable(Map<String, String> parameter) {
         return petRepository.getSheltersPet(parameter);
     }
+
+
+
 }
