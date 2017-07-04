@@ -19,19 +19,26 @@ public class ShelterListMapper {
     public ShelterListMapper() {
     }
 
-    public ShelterListViewModel transform(Shelter shelter){
+    public ShelterListViewModel transform(Shelter shelter) {
         ShelterListViewModel shelterListViewModel = new ShelterListViewModel();
         shelterListViewModel.setId(shelter.getId());
         shelterListViewModel.setName(shelter.getName());
 
         StringBuilder address = new StringBuilder();
-        address.append(shelter.getAddress());
-        address.append(" ");
-        address.append(shelter.getCity());
-        address.append(", ");
-        address.append(shelter.getState());
-        address.append(" ");
-        address.append(shelter.getCountry());
+        if (shelter.getAddress() != null) {
+            address.append(shelter.getAddress());
+            address.append(" ");
+        }
+        if (shelter.getCity() != null) {
+            address.append(shelter.getCity());
+            address.append(", ");
+        }
+        if (shelter.getState() != null) {
+            address.append(shelter.getState());
+            address.append(" ");
+        }
+        if (shelter.getCountry() != null)
+            address.append(shelter.getCountry());
 
         shelterListViewModel.setAddress(address.toString());
         shelterListViewModel.setCity(shelter.getCity());
@@ -45,9 +52,9 @@ public class ShelterListMapper {
         return shelterListViewModel;
     }
 
-    public List<ShelterListViewModel> transformAll(List<Shelter> shelters){
+    public List<ShelterListViewModel> transformAll(List<Shelter> shelters) {
         List<ShelterListViewModel> shelterListViewModels = new ArrayList<>();
-        for (Shelter shelter : shelters){
+        for (Shelter shelter : shelters) {
             shelterListViewModels.add(transform(shelter));
         }
         return shelterListViewModels;

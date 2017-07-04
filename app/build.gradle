@@ -53,9 +53,6 @@ ext {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    /**
-     * TESTING
-     */
     testCompile "junit:junit:$junitVersion"
     //espresso
     androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion", {

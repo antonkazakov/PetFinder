@@ -21,6 +21,12 @@ import butterknife.ButterKnife;
 
 public class SimplePhotoAdapter implements DelegateAdapter<SimplePetListItemView> {
 
+    private SimplePhotoAdapterClickListener simplePhotoAdapterClickListener;
+
+    public SimplePhotoAdapter(SimplePhotoAdapterClickListener simplePhotoAdapterClickListener) {
+        this.simplePhotoAdapterClickListener = simplePhotoAdapterClickListener;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
         return new SimplePhotoViewHolder(inflater.inflate(R.layout.square_photo_item2, parent, false));
@@ -33,6 +39,10 @@ public class SimplePhotoAdapter implements DelegateAdapter<SimplePetListItemView
                 .load(simplePetListItemView.getPhotoUrl())
                 .centerCrop()
                 .into(simplePhotoViewHolder.imgPhoto);
+        simplePhotoViewHolder.itemView.setOnClickListener(
+                view -> simplePhotoAdapterClickListener.onClick(
+                        simplePetListItemView.getId(),
+                        simplePetListItemView.getPhotoUrl()));
     }
 
     public static class SimplePhotoViewHolder extends RecyclerView.ViewHolder {
@@ -44,6 +54,12 @@ public class SimplePhotoAdapter implements DelegateAdapter<SimplePetListItemView
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface SimplePhotoAdapterClickListener {
+
+        void onClick(@NonNull String id, @NonNull String url);
+
     }
 
 }

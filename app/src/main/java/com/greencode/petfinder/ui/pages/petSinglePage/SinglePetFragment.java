@@ -3,10 +3,10 @@ package com.greencode.petfinder.ui.pages.petSinglePage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -25,6 +25,7 @@ import com.greencode.petfinder.PFApplication;
 import com.greencode.petfinder.R;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.entity.locanbeans.pet.Photo;
+import com.greencode.petfinder.ui.base.BaseFragment;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.ViewItem;
 import com.greencode.petfinder.ui.pages.petSinglePage.viewitems.BigTextViewItem;
@@ -43,7 +44,8 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class SinglePetFragment extends Fragment implements SinglePetContract.View {
+public class SinglePetFragment extends BaseFragment implements SinglePetContract.View,
+        SimplePhotoAdapter.SimplePhotoAdapterClickListener {
 
     // TODO: 04.07.17 CHANGE IT
     /**
@@ -145,13 +147,13 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         shareItem.setOnMenuItemClickListener(item -> true);
     }
 
-    private void initRecyclerView(){
-        singlePetGodAdapter = new SinglePetGodAdapter();
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+    private void initRecyclerView() {
+        singlePetGodAdapter = new SinglePetGodAdapter(this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                if (position<MAGIC){
+                if (position < MAGIC) {
                     return 2;
                 }
                 return 1;
@@ -186,6 +188,14 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
         List<ViewItem> viewItems = new ArrayList<>();
         viewItems.addAll(pets);
         singlePetGodAdapter.updateData(viewItems);
+    }
+
+    @Override
+    public void onClick(@NonNull String id, @NonNull String url) {
+        startActivity(new Intent(getActivity(), SinglePetActivity.class)
+                .putExtra("id", id)
+                .putExtra("url", url).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
     }
 
     @Override

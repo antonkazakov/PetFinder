@@ -26,11 +26,11 @@ public class SinglePetGodAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<ViewItem> viewItems = new ArrayList<>();
     private Map<Integer, DelegateAdapter> adapterMap = new HashMap<>();
 
-    public SinglePetGodAdapter() {
+    public SinglePetGodAdapter(SimplePhotoAdapter.SimplePhotoAdapterClickListener simplePhotoAdapterClickListener) {
         adapterMap.put(R.layout.shelter_page_simple_item, new ShelterSimpleAdapter());
         adapterMap.put(R.layout.big_text_item, new BitTextDelegateAdapter());
         adapterMap.put(R.layout.section_item, new SectionAdapter());
-        adapterMap.put(R.layout.square_photo_item2, new SimplePhotoAdapter());
+        adapterMap.put(R.layout.square_photo_item2, new SimplePhotoAdapter(simplePhotoAdapterClickListener));
     }
 
     @Override
