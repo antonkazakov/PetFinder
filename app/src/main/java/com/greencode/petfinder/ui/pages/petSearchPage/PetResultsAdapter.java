@@ -1,6 +1,8 @@
 package com.greencode.petfinder.ui.pages.petSearchPage;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,15 +22,17 @@ import butterknife.ButterKnife;
 
 public class PetResultsAdapter extends RecyclerView.Adapter<PetResultsAdapter.PetResultsViewHolder> {
 
-    List<PetSearchResultsItemView> petSearchResultsItemViews = new ArrayList<>();
+    private List<PetSearchResultsItemView> petSearchResultsItemViews = new ArrayList<>();
 
     @Override
     public PetResultsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        return new PetResultsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.shelter_page_simple_item, null));
     }
 
     @Override
     public void onBindViewHolder(PetResultsViewHolder holder, int position) {
+
+        Log.i("sfsdf", "onBindViewHolder: ");
         holder.tvName.setText(petSearchResultsItemViews.get(position).getName());
     }
 
@@ -37,7 +41,7 @@ public class PetResultsAdapter extends RecyclerView.Adapter<PetResultsAdapter.Pe
         return petSearchResultsItemViews.size();
     }
 
-    void updateData(List<PetSearchResultsItemView> petSearchResultsItemViews){
+    public void updateData(List<PetSearchResultsItemView> petSearchResultsItemViews) {
         this.petSearchResultsItemViews.addAll(petSearchResultsItemViews);
         notifyDataSetChanged();
     }

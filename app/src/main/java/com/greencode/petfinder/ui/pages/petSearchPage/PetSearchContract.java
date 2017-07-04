@@ -3,6 +3,7 @@ package com.greencode.petfinder.ui.pages.petSearchPage;
 import com.greencode.petfinder.ui.base.BasePresenter;
 import com.greencode.petfinder.ui.base.BaseView;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,7 +21,7 @@ public interface PetSearchContract {
 
     interface View extends BaseView {
 
-        void showPets();
+        void showPets(List<PetSearchResultsItemView> petListItemViews);
 
     }
 

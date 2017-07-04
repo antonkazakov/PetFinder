@@ -173,7 +173,7 @@ public class SinglePetFragment extends Fragment implements SinglePetContract.Vie
 
     @Override
     public void setPresenter(BasePresenter basePresenter) {
-        basePresenter.start();
+        basePresenter.destroy();
     }
 
     @Override

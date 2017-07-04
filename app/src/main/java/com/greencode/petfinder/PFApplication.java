@@ -36,7 +36,7 @@ public class PFApplication extends Application {
                 .build();
     }
 
-    public void initRealm(){
+    private void initRealm(){
         Realm.init(getApplicationContext());
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name(Realm.DEFAULT_REALM_NAME)

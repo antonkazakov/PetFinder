@@ -7,6 +7,6 @@ package com.greencode.petfinder.ui.base;
 
 public interface BasePresenter {
 
-    void start();
+    void destroy();
 
 }

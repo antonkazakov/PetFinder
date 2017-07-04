@@ -67,7 +67,7 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
         getPetsInShelterInteractor.execute(map, new Observer<List<Pet>>() {
             @Override
             public void onCompleted() {
-                //stub
+
             }
 
             @Override
@@ -83,8 +83,9 @@ public class ShelterPresenter implements ShelterPageContract.Presenter {
     }
 
     @Override
-    public void start() {
-
+    public void destroy() {
+        getShelterInteractor.clear();
+        getPetsInShelterInteractor.clear();
     }
 
 }

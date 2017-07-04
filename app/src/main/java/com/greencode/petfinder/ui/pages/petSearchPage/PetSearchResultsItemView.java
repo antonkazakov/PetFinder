@@ -14,6 +14,9 @@ public class PetSearchResultsItemView implements ViewItem {
     private String photo;
     private String value;
 
+    public PetSearchResultsItemView() {
+    }
+
     public PetSearchResultsItemView(String name, String photo, String value) {
         this.name = name;
         this.photo = photo;

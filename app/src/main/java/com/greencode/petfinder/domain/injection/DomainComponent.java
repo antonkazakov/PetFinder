@@ -1,4 +1,4 @@
-package com.greencode.petfinder.domain;
+package com.greencode.petfinder.domain.injection;
 
 import javax.inject.Singleton;
 

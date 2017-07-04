@@ -4,17 +4,16 @@ import android.util.Log;
 
 import com.greencode.petfinder.data.entity.locanbeans.pet.Pet;
 import com.greencode.petfinder.data.repository.PetRepository;
+import com.greencode.petfinder.domain.GetPetInteractor;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -24,9 +23,13 @@ import rx.schedulers.Schedulers;
 
 public class SinglePetPresenter implements SinglePetContract.Presenter {
 
+    private static final String TAG = SinglePetPresenter.class.getClass().getSimpleName();
+
     private PetRepository repository;
     private SinglePetContract.View view;
     private SinglePetMapper singlePetMapper;
+    private GetPetInteractor getPetInteractor;
+
 
     @Inject
     public SinglePetPresenter(PetRepository repository, SinglePetContract.View view, SinglePetMapper singlePetMapper) {
@@ -37,17 +40,23 @@ public class SinglePetPresenter implements SinglePetContract.Presenter {
 
     @Override
     public void loadPet(String id, boolean force) {
-        repository.getPet(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Pet>() {
-                    @Override
-                    public void call(Pet pet) {
-                        view.showPet(pet);
-                    }
-                }, throwable -> {
-                    Log.e("SINGLE", "call: ",throwable );
-                });
+        getPetInteractor.execute(id, new Observer<Pet>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG, "onError: ", e);
+                view.showError(e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onNext(Pet pet) {
+                view.showPet(pet);
+            }
+        });
     }
 
     @Override
@@ -57,24 +66,15 @@ public class SinglePetPresenter implements SinglePetContract.Presenter {
         paramMap.put("count", String.valueOf(limit));
         repository.getSheltersPet(paramMap)
                 .flatMap(pets -> Observable.just(singlePetMapper.transformLuckyPetsdf(pets)))
-                .doOnTerminate(new Action0() {
-                    @Override
-                    public void call() {
-
-                    }
-                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<SimplePetListItemView>>() {
-                    @Override
-                    public void call(List<SimplePetListItemView> simplePetListItemViews) {
+                .subscribe(simplePetListItemViews -> {
 
-                    }
                 });
     }
 
     @Override
-    public void start() {
+    public void destroy() {
 
     }
 

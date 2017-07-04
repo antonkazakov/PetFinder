@@ -34,7 +34,7 @@ public class SheltersListPresenter implements SheltersContract.Presenter{
     }
 
     @Override
-    public void start() {
+    public void destroy() {
 
     }
 

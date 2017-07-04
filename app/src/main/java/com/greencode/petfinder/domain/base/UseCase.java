@@ -1,4 +1,6 @@
-package com.greencode.petfinder.domain;
+package com.greencode.petfinder.domain.base;
+
+import android.support.annotation.NonNull;
 
 import com.greencode.petfinder.domain.injection.JobThread;
 import com.greencode.petfinder.domain.injection.UIThread;
@@ -7,6 +9,7 @@ import rx.Observable;
 import rx.Observer;
 import rx.Scheduler;
 import rx.Subscriber;
+import rx.functions.Action0;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -26,12 +29,32 @@ public abstract class UseCase<ResultType, ParameterType> {
         compositeSubscription = new CompositeSubscription();
     }
 
+    @NonNull
     protected abstract Observable<ResultType> buildObservable(ParameterType parameter);
 
     public void execute(ParameterType parameter, Observer<ResultType> observer) {
         compositeSubscription.add(buildObservable(parameter)
                 .subscribeOn(jobScheduler)
                 .observeOn(uiScheduler)
+                .subscribe(observer));
+    }
+
+    /**
+     * Execute observable with some actions
+     * @param parameter
+     * @param onSubscribeAction
+     * @param onTerminateAction
+     * @param observer
+     */
+    public void execute(ParameterType parameter,
+                        Action0 onSubscribeAction,
+                        Action0 onTerminateAction,
+                        Observer<ResultType> observer) {
+        compositeSubscription.add(buildObservable(parameter)
+                .subscribeOn(jobScheduler)
+                .observeOn(uiScheduler)
+                .doOnSubscribe(onSubscribeAction)
+                .doOnTerminate(onTerminateAction)
                 .subscribe(observer));
     }
 

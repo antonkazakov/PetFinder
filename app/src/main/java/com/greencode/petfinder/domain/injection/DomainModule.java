@@ -1,7 +1,4 @@
-package com.greencode.petfinder.domain;
-
-import com.greencode.petfinder.domain.injection.JobThread;
-import com.greencode.petfinder.domain.injection.UIThread;
+package com.greencode.petfinder.domain.injection;
 
 import javax.inject.Singleton;
 

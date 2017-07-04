@@ -3,6 +3,7 @@ package com.greencode.petfinder.domain;
 import com.greencode.petfinder.data.entity.locanbeans.shelter.Shelter;
 import com.greencode.petfinder.data.repository.LocationRepository;
 import com.greencode.petfinder.data.repository.SheltersRepository;
+import com.greencode.petfinder.domain.base.UseCase;
 import com.greencode.petfinder.domain.injection.JobThread;
 import com.greencode.petfinder.domain.injection.UIThread;
 

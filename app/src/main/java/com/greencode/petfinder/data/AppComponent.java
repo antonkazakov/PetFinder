@@ -10,7 +10,7 @@ import com.greencode.petfinder.data.repository.PetRepository;
 import com.greencode.petfinder.data.repository.PetRepositoryModule;
 import com.greencode.petfinder.data.repository.ShelterRepositoryModule;
 import com.greencode.petfinder.data.repository.SheltersRepository;
-import com.greencode.petfinder.domain.DomainModule;
+import com.greencode.petfinder.domain.injection.DomainModule;
 import com.greencode.petfinder.domain.injection.JobThread;
 import com.greencode.petfinder.domain.injection.UIThread;
 import com.greencode.petfinder.ui.pages.shelterSinglePage.ShelterSingleModule;

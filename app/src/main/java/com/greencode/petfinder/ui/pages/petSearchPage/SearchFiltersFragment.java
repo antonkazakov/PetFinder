@@ -50,6 +50,7 @@ public class SearchFiltersFragment extends Fragment implements SearchFiltersAdap
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         setHasOptionsMenu(true);
     }
 
@@ -124,6 +125,7 @@ public class SearchFiltersFragment extends Fragment implements SearchFiltersAdap
                 .title(title)
                 .items(array)
                 .itemsCallbackSingleChoice(-1, (dialog, itemView, which, text) -> {
+                    searchAdapter.changeItem(position, new SimpleFilterItem(title, text.toString(), type));
                     filtersMap.put(type, text.toString());
                     return true;
                 })

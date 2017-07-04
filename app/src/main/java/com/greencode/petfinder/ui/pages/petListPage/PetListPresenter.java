@@ -48,7 +48,6 @@ public class PetListPresenter implements PetListContract.Presenter {
                     paramsMap.put("count", "20");
                     return petRepository.findPet(paramsMap);
                 })
-
                 .flatMap(pets -> Observable.just(petListMapper.transformSinglePet(pets)))
                 .flatMap(testFuckItems -> {
                     List<ViewItem> viewItems = new ArrayList<>();
@@ -111,7 +110,7 @@ public class PetListPresenter implements PetListContract.Presenter {
     }
 
     @Override
-    public void start() {
+    public void destroy() {
 
     }
 

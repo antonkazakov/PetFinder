@@ -27,8 +27,9 @@ public class PetSearchModule {
 
     @FragmentScope
     @Provides
-    public PetSearchPresenter providePetSearchPresenter(SearchPetsInteractor searchPetsInteractor) {
-        return new PetSearchPresenter(searchPetsInteractor, view);
+    public PetSearchPresenter providePetSearchPresenter(SearchPetsInteractor searchPetsInteractor,
+                                                        PetSearchMapper petSearchMapper) {
+        return new PetSearchPresenter(searchPetsInteractor, view, petSearchMapper);
     }
 
     @FragmentScope
@@ -37,6 +38,12 @@ public class PetSearchModule {
                                                             @JobThread Scheduler jobScheduler,
                                                             @NonNull PetRepository petRepository) {
         return new SearchPetsInteractor(uiScheduler, jobScheduler, petRepository);
+    }
+
+    @FragmentScope
+    @Provides
+    public PetSearchMapper providePetSearchMapper() {
+        return new PetSearchMapper();
     }
 
 }
