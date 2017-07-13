@@ -38,7 +38,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class CloudPetDataSourceTest {
 
-    private static final String GET_PET_RESPONSE = "/Users/antonkazakov/android/PetFinder/app/src/test/resources/xml/get_pet.xml";
+    private static final String GET_PET_RESPONSE = "xml/get_pet.xml";
 
     private Persister persister;
     private SimpleXMLParser simpleXMLParser;
@@ -67,8 +67,12 @@ public class CloudPetDataSourceTest {
 
     @Test
     public void getPetSuccessTest() throws Exception {
+
         when(apiService.getPet(anyString()))
-                .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE, PetGetResponse.class)));
+                .thenReturn(Observable.just(simpleXMLParser.parse(GET_PET_RESPONSE,
+                        PetGetResponse.class)));
+
+
         when(petMapper.transform(any(PetGetResponse.class)))
                 .thenCallRealMethod();
         TestSubscriber<Pet> testSubscriber = new TestSubscriber<>();

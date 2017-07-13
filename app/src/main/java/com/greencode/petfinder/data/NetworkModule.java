@@ -37,6 +37,7 @@ public class NetworkModule {
     @Provides
     public static OkHttpClient provideOkHttp(@NonNull HttpLoggingInterceptor httpLoggingInterceptor,
                                              @NonNull Interceptor keyInterceptor) {
+
         return new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .addNetworkInterceptor(keyInterceptor)

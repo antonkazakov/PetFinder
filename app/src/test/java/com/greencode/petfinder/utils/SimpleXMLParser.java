@@ -20,6 +20,7 @@ public class SimpleXMLParser implements IParser {
     @Inject
     public SimpleXMLParser(Serializer serializer) {
         this.serializer = serializer;
+
     }
 
     @Override
