@@ -35,7 +35,7 @@ public class PetPhotoViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(ContextCompat.getDrawable(this,R.drawable.ic_action_arrow_back_white));
+//        toolbar.setNavigationIcon(ContextCompat.getDrawable(this,R.drawable.ic_action_arrow_back_white));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         photoList = getIntent().getStringArrayListExtra("photos");
         photoPagerAdapter = new PhotoPagerAdapter(photoList);

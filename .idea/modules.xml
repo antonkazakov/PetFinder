@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PetFinder.iml" filepath="$PROJECT_DIR$/PetFinder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PetFinder.iml" filepath="$PROJECT_DIR$/PetFinder.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/petfinder/petfinder.iml" filepath="$PROJECT_DIR$/petfinder/petfinder.iml" />
     </modules>
   </component>
 </project>
